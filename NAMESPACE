@@ -1,0 +1,3 @@
+useDynLib(bark)
+
+export(bark, sim.Friedman1, sim.Friedman2, sim.Friedman3, sim.Circle)
