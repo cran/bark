@@ -1,4 +1,5 @@
 \name{bark}
+\alias{bark}
 \title{Bayesian Additive Regression Kernels}
 \alias{bark}
 \description{
