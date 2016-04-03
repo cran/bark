@@ -65,8 +65,8 @@ bark <- function(x.train,
     }
   }
   if(fixed$p == 1){
-    x.train <- matrix(x.train, nc=1);
-    x.test <- matrix(x.test, nc=1);
+    x.train <- matrix(x.train, ncol=1);
+    x.test <- matrix(x.test, ncol=1);
   }
   if(!classification){
     y.train.mean <- mean(y.train);
@@ -120,21 +120,21 @@ bark <- function(x.train,
 
   # initializing the "saved" results
   if(keeptrain == TRUE){
-    yhat.train <- matrix(NA, nr=dim(x.train)[1], nkeep);
+    yhat.train <- matrix(NA, nrow=dim(x.train)[1], nkeep);
   }
   if(dim(x.test)[1] != 0){
-    yhat.test <- matrix(NA, nr=dim(x.test)[1], nkeep);
+    yhat.test <- matrix(NA, nrow=dim(x.test)[1], nkeep);
   }
   if(classification == FALSE){
     theta.phi <- rep(NA, nkeep);
   }else{
     theta.phi <- rep(1, nkeep);
   }
-  theta.nvec <- matrix(NA, nc=fixed$n+1, nr=nkeep);
-  theta.varphi <- matrix(NA, nc=fixed$n+1, nr=nkeep);
-  theta.beta <- matrix(NA, nc=fixed$n+1, nr=nkeep);
-  theta.lambda <- matrix(NA, nc=fixed$p, nr=nkeep);
-  theta.phi <- matrix(NA, nc=1, nr=nkeep);
+  theta.nvec <- matrix(NA, ncol=fixed$n+1, nrow=nkeep);
+  theta.varphi <- matrix(NA, ncol=fixed$n+1, nrow=nkeep);
+  theta.beta <- matrix(NA, ncol=fixed$n+1, nrow=nkeep);
+  theta.lambda <- matrix(NA, ncol=fixed$p, nrow=nkeep);
+  theta.phi <- matrix(NA, ncol=1, nrow=nkeep);
   colnames(theta.nvec) <- paste("n", 0:fixed$n, sep="");
   colnames(theta.varphi) <- paste("v", 0:fixed$n, sep="");
   colnames(theta.beta) <- paste("b", 0:fixed$n, sep="");
