@@ -119,7 +119,7 @@ bark(x.train, y.train, x.test = matrix(0, 0, 0),
    }
 }
 \details{
-   BARK is an Bayesian MCMC method. 
+   BARK is a Bayesian MCMC method. 
    At each MCMC interation, we produce a draw from the joint posterior
    distribution, i.e. a full configuration of regression coefficents,
    kernel locations and kernel parameters etc.
@@ -216,6 +216,7 @@ bark(x.train, y.train, x.test = matrix(0, 0, 0),
   }
 }
 \examples{
+\dontrun{
 ##Simulate regression example
 # Friedman 2 data set, 200 noisy training, 1000 noise free testing
 # Out of sample MSE in SVM (default RBF): 6500 (sd. 1600)
@@ -237,4 +238,4 @@ boxplot(as.data.frame(fit.bark.se$theta.lambda))
 mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 
 }
-
+}
