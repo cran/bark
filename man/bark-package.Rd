@@ -19,7 +19,8 @@ License: \tab GPL version 2 or newer\cr
 LazyLoad: \tab yes\cr
 }
 Overview:\cr
-  BARK is a Bayesian \emph{sum-of-kernels} model.\cr
+  BARK is a Bayesian \emph{sum-of-kernels} model or because of the
+  Bayesian priors is a Bayesian Additive Regression Kernel model. \cr
   For numeric response \eqn{y}, we have
   \eqn{y = f(x) + \epsilon}{y = f(x) + e},
   where \eqn{\epsilon \sim N(0,\sigma^2)}{e ~ N(0,sigma\^2)}.\cr
@@ -39,15 +40,15 @@ Overview:\cr
   either soft shrinkage or hard shrinkage for the scale
   parameters.
   
-Functions:\cr
-bark()\cr
+Functions in the package include:\cr
+\link{\code{bark()}}\cr
 sim.Friedman1()\cr
 sim.Friedman2()\cr
 sim.Friedman3()\cr
 sim.Circle()\cr
 }
 \author{
-  Zhi Ouyang <zo2@stat.duke.edu>,
+  Zhi Ouyang <zhi.ouyang@gmail.com>
   Merlise Clyde <clyde@stat.duke.edu>,
   Robert Wolpert <wolpert@stat.duke.edu>
 
@@ -62,6 +63,7 @@ sim.Circle()\cr
 }
 
 \examples{
+\dontrun{
 ##Simulate regression example
 # Friedman 2 data set, 200 noisy training, 1000 noise free testing
 # Out of sample MSE in SVM (default RBF): 6500 (sd. 1600)
@@ -81,4 +83,5 @@ testdata <- sim.Circle(1000, dim=5)
 fit.bark.se <- bark(traindata$x, traindata$y, testdata$x, classification=TRUE, type="se")
 boxplot(as.data.frame(fit.bark.se$theta.lambda))
 mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
+}
 }
