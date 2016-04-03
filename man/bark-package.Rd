@@ -41,7 +41,7 @@ Overview:\cr
   parameters.
   
 Functions in the package include:\cr
-\link{\code{bark()}}\cr
+{\code{\link{bark}}()\cr
 sim.Friedman1()\cr
 sim.Friedman2()\cr
 sim.Friedman3()\cr
