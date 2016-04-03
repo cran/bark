@@ -1,3 +1,5 @@
 useDynLib(bark)
+importFrom("stats", "dgamma", "pnorm", "qnorm", "rbeta", "rexp",
+           "rgamma", "rmultinom", "rnorm", "runif", "sd")
 
 export(bark, sim.Friedman1, sim.Friedman2, sim.Friedman3, sim.Circle)
