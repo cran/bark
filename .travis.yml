@@ -1,0 +1,8 @@
+language: r
+cache: packages
+r:
+  - devel
+  - release
+global:
+  - _R_CRAN_CHECK_INCOMING_=true
+
