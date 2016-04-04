@@ -36,12 +36,12 @@ Overview:\cr
   Feature selection can be achieved through the inference
   on the scale parameters in the Gaussian kernels.
   BARK accepts four different types of prior distributions,
-  \emph{e}, \emph{d}, \emph{se}, \emph{sd}, enabling
+  \code{e}, \code{d}, \code{se}, \code{sd}, enabling
   either soft shrinkage or hard shrinkage for the scale
   parameters.
   
 Functions in the package include:\cr
-{\code{\link{bark}}()\cr
+{\code{\link{bark}}}()\cr
 sim.Friedman1()\cr
 sim.Friedman2()\cr
 sim.Friedman3()\cr
