@@ -28,7 +28,7 @@ getdesign <- function(dMat,            # n*d, data matrix
           as.integer(length(isi)),     # p, number of kernels (model dimension)
           as.integer(dim(dMat)[2]),    # d, observation dimension
           z = double(dim(dMat)[1]*length(isi)))$z; # n*p' design matrix
-  z <- matrix(z, nc=length(isi));
+  z <- matrix(z, ncol=length(isi));
   return(z);
 }
 
@@ -52,7 +52,7 @@ getfulldesign <- function(dMat,            # data matrix
           as.integer(length(isi)),     # p, number of kernels (model dimension)
           as.integer(dim(dMat)[2]),    # d, observation dimension
           z = double(dim(dMat)[1]*length(isi)))$z; # n*p' design matrix
-  z <- matrix(z, nc=length(isi));
+  z <- matrix(z, ncol=length(isi));
   return(z);
 }
 
@@ -92,7 +92,7 @@ llike <- function(y,          # continuous or 0/1 response
   if(is.null(fullXX)){
     XX <- getdesign(X, X, theta);
   }else{
-    XX <- matrix(fullXX[, theta$nvec>0], nc=sum(theta$nvec>0));
+    XX <- matrix(fullXX[, theta$nvec>0], ncol=sum(theta$nvec>0));
   }
   varphiovern <- theta$varphi[theta$nvec>0]/theta$nvec[theta$nvec>0]^2;
   evv <- eigen(t(XX)%*%XX, symmetric=TRUE, EISPACK=TRUE);
