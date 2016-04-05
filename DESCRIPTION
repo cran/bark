@@ -10,8 +10,7 @@ Description: Impelementation of BARK: Bayesian Additive Regression
         Kernels with Feature Selection, Zhi Ouyang (2008), Ph.D.
         thesis, Chapter 3. 
 License: GPL (>= 2)
-URL: http://www.r-project.org,
-     http://github/merliseclyde/bark
+URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 LazyLoad: yes
 Repository: CRAN
 
