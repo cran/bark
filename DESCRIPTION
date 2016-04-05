@@ -1,14 +1,14 @@
 Package: bark
 Type: Package
-Title: Bayesian Additive Regresssion Kernels
+Title: Bayesian Additive Regression Kernels
 Version: 0.1.1
 Date: 2016-04-01
 Author: Zhi Ouyang <zhi.ouyang@gmail.com>, Merlise Clyde
         <clyde@stat.duke.edu>, Robert Wolpert <wolpert@stat.duke.edu>
 Maintainer: Merlise Clyde <clyde@stat.duke.edu>
-Description: Impelementation of BARK: Bayesian Additive Regression
+Description: Implementation of BARK: Bayesian Additive Regression
         Kernels with Feature Selection, Zhi Ouyang (2008), Ph.D.
-        thesis, Chapter 3. 
+        thesis, Chapter 3.  <http://stat.duke.edu/people/theses/OuyangZ.html>
 License: GPL (>= 2)
 URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 LazyLoad: yes
