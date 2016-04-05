@@ -7,8 +7,9 @@ Author: Zhi Ouyang <zhi.ouyang@gmail.com>, Merlise Clyde
         <clyde@stat.duke.edu>, Robert Wolpert <wolpert@stat.duke.edu>
 Maintainer: Merlise Clyde <clyde@stat.duke.edu>
 Description: Implementation of BARK: Bayesian Additive Regression
-        Kernels with Feature Selection, Zhi Ouyang (2008), Ph.D.
-        thesis, Chapter 3.  <http://stat.duke.edu/people/theses/OuyangZ.html>
+        Kernels with Feature Selection,
+	<http://stat.duke.edu/people/theses/OuyangZ.html> Zhi Ouyang
+	(2008), Ph.D. thesis, Chapter 3.
 License: GPL (>= 2)
 URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 LazyLoad: yes
