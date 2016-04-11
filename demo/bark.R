@@ -17,3 +17,4 @@ testdata <- sim.Circle(1000, dim=5)
 fit.bark.se <- bark(traindata$x, traindata$y, testdata$x, classification=TRUE, type="se")
 boxplot(as.data.frame(fit.bark.se$theta.lambda))
 mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
+

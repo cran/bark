@@ -1,7 +1,7 @@
 Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
-Version: 0.1.1
+Version: 0.1.2
 Date: 2016-04-01
 Author: Zhi Ouyang <zhi.ouyang@gmail.com>, Merlise Clyde
         <clyde@stat.duke.edu>, Robert Wolpert <wolpert@stat.duke.edu>
@@ -9,7 +9,14 @@ Maintainer: Merlise Clyde <clyde@stat.duke.edu>
 Description: Implementation of BARK: Bayesian Additive Regression
         Kernels with Feature Selection,
 	<http://stat.duke.edu/people/theses/OuyangZ.html> Zhi Ouyang
-	(2008), Ph.D. thesis, Chapter 3.
+	(2008), Ph.D. thesis, Chapter 3.  This package provides
+	software for nonparametric function estimation using Levy
+	Random Field priors for functions that may be represented as a
+	sum of additive multivariate kernels.  Kernels are located at
+	every data point as in SVM, however, coefficients may be
+	heavily shrunk to zero under the Cauchy process priors.  The
+	number of active features is controlled by priors on
+	precisions within the kernels. 
 License: GPL (>= 2)
 URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 LazyLoad: yes
