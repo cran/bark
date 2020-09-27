@@ -79,7 +79,7 @@ getmeanJ <- function(alpha,
 # log likelihood calculation
 # marginalized beta in the conjugate normal-gamma setting
 # for binary model, likelihood conditional on hidden z values
-llike <- function(y,          # continuous or 0/1 response
+llike <- cmpfun(function(y,          # continuous or 0/1 response
                   X,          # n*d covariate matrix
                   theta,      # list(p, nvec, varphi, beta, L, phi)
                   classification,  # TRUE/FALSE class/regression
@@ -95,7 +95,7 @@ llike <- function(y,          # continuous or 0/1 response
     XX <- matrix(fullXX[, theta$nvec>0], ncol=sum(theta$nvec>0));
   }
   varphiovern <- theta$varphi[theta$nvec>0]/theta$nvec[theta$nvec>0]^2;
-  evv <- eigen(t(XX)%*%XX, symmetric=TRUE, EISPACK=TRUE);
+  evv <- eigen(t(XX)%*%XX, symmetric=TRUE);
   if(dim(XX)[2] == 1){
     Sigma <- 1/(theta$phi*t(XX)%*%XX + varphiovern);
   }else{
@@ -108,4 +108,4 @@ llike <- function(y,          # continuous or 0/1 response
     sum(log(varphiovern + theta$phi*evv$values))/2 - 
     (theta$phi*sum((y-XX%*%mu)^2) + sum(varphiovern*mu^2))/2;
   return(ll);
-}
+})
