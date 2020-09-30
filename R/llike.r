@@ -20,7 +20,7 @@ getdesign <- function(dMat,            # n*d, data matrix
     isi[1] <- 1;
   }
   z <- .C("getDesignCpp",              # just use the exponent
-          as.double(dMat),             # n*d, data matrix vector 
+          as.double(dMat),             # n*d, data matrix vector
           as.double(cMat1[nvec>0,]),   # p'*d, center matrix vector
           as.double(theta$L),          # d*1, kernel vector
           as.integer(isi),             # p'*1, indicator of intercept
@@ -44,7 +44,7 @@ getfulldesign <- function(dMat,            # data matrix
   cMat1 <- rbind(1, cMat);
   isi <- c(1, rep(0, dim(cMat)[1]));
   z <- .C("getDesignCpp",              # just use the exponent
-          as.double(dMat),             # n*d, data matrix vector 
+          as.double(dMat),             # n*d, data matrix vector
           as.double(cMat1),            # (p+1)*d, center matrix vector
           as.double(theta$L),          # d*1, kernel vector
           as.integer(isi),             # (p+1)*1, indicator of intercept
@@ -79,7 +79,7 @@ getmeanJ <- function(alpha,
 # log likelihood calculation
 # marginalized beta in the conjugate normal-gamma setting
 # for binary model, likelihood conditional on hidden z values
-llike <- cmpfun(function(y,          # continuous or 0/1 response
+llike <- function(y,          # continuous or 0/1 response
                   X,          # n*d covariate matrix
                   theta,      # list(p, nvec, varphi, beta, L, phi)
                   classification,  # TRUE/FALSE class/regression
@@ -99,13 +99,13 @@ llike <- cmpfun(function(y,          # continuous or 0/1 response
   if(dim(XX)[2] == 1){
     Sigma <- 1/(theta$phi*t(XX)%*%XX + varphiovern);
   }else{
-    Sigma <- evv$vectors %*% diag(1/(theta$phi*evv$values + 
+    Sigma <- evv$vectors %*% diag(1/(theta$phi*evv$values +
                                      varphiovern)) %*% t(evv$vectors)
   }
   mu <- theta$phi*Sigma%*%(t(XX)%*%y);
   ll <- length(y)/2*log(theta$phi/2/pi) +
     sum(log(varphiovern))/2 -
-    sum(log(varphiovern + theta$phi*evv$values))/2 - 
+    sum(log(varphiovern + theta$phi*evv$values))/2 -
     (theta$phi*sum((y-XX%*%mu)^2) + sum(varphiovern*mu^2))/2;
   return(ll);
-})
+}

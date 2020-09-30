@@ -19,6 +19,13 @@ Description: Implementation of BARK: Bayesian Additive Regression
 	precisions within the kernels. 
 License: GPL (>= 2)
 URL: http://www.r-project.org, http://github.com/merliseclyde/bark
-LazyLoad: yes
+BugReports: https://github.com/merliseclyde/bark/issues
+Suggests: 
+    rmarkdown, 
+    roxygen2
+LazyData: yes
 Repository: CRAN
-
+NeedsCompilation: yes
+ByteCompile: yes
+Encoding: UTF-8
+RoxygenNote: 7.1.1

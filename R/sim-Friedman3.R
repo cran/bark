@@ -1,4 +1,13 @@
 # sim.Friedman3()
+#' sim.Friedman3
+#'
+#' @param n
+#' @param sd
+#'
+#' @return
+#' @export
+#'
+#' @examples
 sim.Friedman3 <- function(n, sd=0.1) {
   x <- cbind(runif(n, min=0, max=100),
              runif(n, min=40*pi, max=560*pi),

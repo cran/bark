@@ -1,4 +1,25 @@
 ##bark()
+
+#' Simulate from the Posterior Distribution of  a BARK  Model
+#'
+#' @param x.train
+#' @param y.train
+#' @param x.test
+#' @param type
+#' @param classification
+#' @param keepevery
+#' @param nburn
+#' @param nkeep
+#' @param printevery
+#' @param keeptrain
+#' @param fixed
+#' @param tune
+#' @param theta
+#'
+#' @return
+#' @export
+#'
+#' @examples
 bark <- function(x.train,
                  y.train,
                  x.test = matrix(0, 0, 0),
@@ -14,15 +35,15 @@ bark <- function(x.train,
                    dpow=1, upow=0, varphistep=.5, phistep=1),
                  theta = list()
                  ){
-  if ((!is.matrix(x.train)) || (typeof(x.train) != "double")) 
+  if ((!is.matrix(x.train)) || (typeof(x.train) != "double"))
     stop("argument x.train must be a double matrix")
-  if ((!is.matrix(x.test)) || (typeof(x.test) != "double")) 
+  if ((!is.matrix(x.test)) || (typeof(x.test) != "double"))
     stop("argument x.test must be a double matrix")
   if ((!is.vector(y.train)) || !(typeof(y.train) %in% c("double", "integer", "logical")))
       stop("argument y.train must be a double/integer/logical vector")
-  if (nrow(x.train) != length(y.train)) 
+  if (nrow(x.train) != length(y.train))
     stop("number of rows in x.train must equal length of y.train")
-  if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train))) 
+  if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
     stop("input x.test must have the same number of columns as x.train")
   if (!is.logical(classification))
     stop("argument classification is not logical")
@@ -33,7 +54,7 @@ bark <- function(x.train,
   else
     problem <- "regression problem"
   print(paste("Starting BARK-", type, " for this ", problem, sep=""))
-  
+
   # initializing fixed
   if (is.null(fixed$alpha))
     fixed$alpha <- 1
@@ -50,11 +71,11 @@ bark <- function(x.train,
   if (is.null(fixed$pbetaa))
     fixed$pbetaa <- 1
   if (is.null(fixed$pbetab))
-    fixed$pbetab <- 1  
+    fixed$pbetab <- 1
   fixed$n <- dim(x.train)[1];
   fixed$p <- dim(x.train)[2];
   fixed$meanJ <- getmeanJ(fixed$alpha, fixed$eps, fixed$gam);
-  
+
   # centering and scaling
   x.train.mean <- apply(x.train, 2, mean);
   x.train.sd <- apply(x.train, 2, sd);
