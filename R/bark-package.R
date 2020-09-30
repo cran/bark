@@ -57,8 +57,8 @@
 #' \cr
 #' \url{http://stat.duke.edu/people/theses/OuyangZ.html}
 #'
-#' @importFrom stats dgamma, pnorm, qnorm, rbeta, rexp,
-#' @importFrom stats gamma, rmultinom, rnorm, runif, sd
+#' @importFrom stats dgamma pnorm qnorm rbeta rexp
+#' @importFrom stats gamma rmultinom rnorm runif sd
 #'
 #' @useDynLib bark
 #'
