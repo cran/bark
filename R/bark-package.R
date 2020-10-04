@@ -59,7 +59,7 @@
 #'
 #' @import stats
 #'
-#' @useDynLib bark
+#' @useDynLib bark, .registration = TRUE, .fixes="C_"
 #'
 #' @family bark functions
 #'
