@@ -5,6 +5,8 @@
 #'   functionality are also mentioned. Help pages for deprecated functions are
 #'   available at \code{help("<function>-deprecated")}.
 #' @family bark deprecated functions
+#' @family bark functions
 #' @name bark-package-deprecated
+#'
 #' @keywords internal
 NULL

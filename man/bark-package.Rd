@@ -61,6 +61,11 @@ Duke University. Ph.D. dissertation, Chapter 3.
 }
 \seealso{
 Other bark functions: 
+\code{\link{bark-package-deprecated}},
+\code{\link{bark}()},
+\code{\link{sim_Friedman1}()},
+\code{\link{sim_Friedman2}()},
+\code{\link{sim_Friedman3}()},
 \code{\link{sim_circle}()}
 }
 \concept{bark functions}
