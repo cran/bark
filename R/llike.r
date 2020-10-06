@@ -20,14 +20,22 @@ createDesign <- function(X, center, L, intercept, n,
   z <- matrix(z, ncol = p)  # coerce to matrix
 }
 
-createDesignCall <- function(X, center, L, intercept) {
+createDesignFail <- function(X, center, L, intercept) {
+  .Call(C_getDesignFail,
+        X, # n*d, data matrix vector
+        center, # p'*d, center matrix vector
+        L, # d*1, kernel vector
+        as.integer(intercept)) # p'*1, indicator of intercept
+}
+
+
+createDesignGood <- function(X, center, L, intercept) {
   .Call(C_getDesign,
         X, # n*d, data matrix vector
         center, # p'*d, center matrix vector
         L, # d*1, kernel vector
         intercept) # p'*1, indicator of intercept
 }
-
 ## getdesign()
 #  Use cpp code in the shared library to calculate the kernel design matrix
 #  get the design matrix for those nvec>0 columns only

@@ -21,8 +21,9 @@ License: GPL (>= 2)
 URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
 Suggests: 
-    rmarkdown, 
-    roxygen2
+    rmarkdown,
+    roxygen2,
+    testthat
 LazyData: yes
 Repository: CRAN
 NeedsCompilation: yes
