@@ -20,16 +20,9 @@ createDesign <- function(X, center, L, intercept, n,
   z <- matrix(z, ncol = p)  # coerce to matrix
 }
 
-createDesignFail <- function(X, center, L, intercept) {
-  .Call(C_getDesignFail,
-        X, # n*d, data matrix vector
-        center, # p'*d, center matrix vector
-        L, # d*1, kernel vector
-        as.integer(intercept)) # p'*1, indicator of intercept
-}
 
 
-createDesignGood <- function(X, center, L, intercept) {
+createDesignCall <- function(X, center, L, intercept) {
   .Call(C_getDesign,
         X, # n*d, data matrix vector
         center, # p'*d, center matrix vector
