@@ -1,0 +1,65 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# bark: Bayesian Additive Regression Kernels
+
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.com/merliseclyde/bark.svg?branch=master)](https://travis-ci.com/merliseclyde/bark)
+<!-- badges: end -->
+
+The bark parkage implements estimation for a Bayesian nonparametric regression model represented as a sum of multivariate Gaussian kernels as a flexible model to capture nonlinearities, interactions and feature selection.
+
+## Installation
+
+You can install the released version of bark from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("bark")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("merliseclyde/bark")
+```
+## Example
+
+
+
+```{r example}
+library(bark)
+traindata <- sim_Friedman2(200, sd=125)
+testdata <- sim_Friedman2(1000, sd=0)
+fit.bark.d <- bark(traindata$x, 
+                   traindata$y, 
+                   testdata$x, 
+                   classification=FALSE, 
+                   type="sd",
+                   printevery = 10^10)
+
+mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
+```
+
+bark is similar to SVM, however it allows different kernel smoothing parameters for every dimension of the inputs  $x$ as well as selection of inputs by allowing the kernel
+smoothing parameters to be zero.
+
+The plot below shows posterior draws of the $\lambda$ for the simulated data.
+
+```{r}
+boxplot(as.data.frame(fit.bark.d$theta.lambda))
+```
+
+The posterior distibution for $\labmda_1$ and $\lambda_4$ are concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the mean function.
