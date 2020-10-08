@@ -21,10 +21,31 @@ test_that("Using .Call getDesignCall Check Types", {
   expect_error(bark:::createDesignCall(train$x,
                                        center=train$x,
                                        L = rep(.5, d),
-                                       intercept=rep(1,p)))
+                                       intercept=rep(1,p)),
+               NA)
+  expect_error(bark:::createDesignCall(train$x,
+                                       center=train$x,
+                                       L = rep(1L, d),
+                                       intercept=rep(1L,p)),
+               NA)
   expect_true(is.matrix(bark:::createDesignCall(train$x,
-                                                center=train$x,
-                                                L = rep(.5, d),
-                                                intercept=rep(1L,p))))
+                                         center=train$x,
+                                         L = rep(.5, d),
+                                         intercept=rep(1L,p))))
 
+})
+
+test_that("Using .Call getDesignCall Check dimensions", {
+  n = 100; d=2
+  p = n
+  train = sim_circle(n, d) #
+  expect_error(createDesignCall(train$x,
+                                center=train$x[5,1],
+                                L = rep(.5, p),
+                                intercept=rep(1,d)))
+  expect_error(createDesignCall(train$x,
+                                center=train$x,
+                                L = rep(.5, d),
+                                intercept=rep(1,p)),
+               NA)
 })

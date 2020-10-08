@@ -23,7 +23,7 @@ extern "C"{
 //      int   *cdims = INTEGER(getAttrib(RC,R_DimSymbol));
 		  int   n = xdims[0]; // n, number of observations
 		  int   d = xdims[1];	// d, observation dimension
-		  int   p = LENGTH(RC);
+		  int   p = LENGTH(RC)/d;
 
 	// Add a check to see if p = cdims[0] and if not provide
 	// a warning

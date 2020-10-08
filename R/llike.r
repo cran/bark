@@ -23,11 +23,18 @@ createDesign <- function(X, center, L, intercept, n,
 
 
 createDesignCall <- function(X, center, L, intercept) {
+   xdim = dim(X)
+   cdim = dim(center)
+   ldim = length(L)
+   idim = length(intercept)
+   if (xdim[2] !=  ldim || xdim[2] != cdim[2] || cdim[1] != idim) {
+     stop("diminsions of inputs to createDesign due not conform")
+   }
   .Call(C_getDesign,
         X, # n*d, data matrix vector
         center, # p'*d, center matrix vector
-        L, # d*1, kernel vector
-        intercept) # p'*1, indicator of intercept
+        as.double(L), # d*1, kernel vector
+        as.integer(intercept)) # p'*1, indicator of intercept
 }
 ## getdesign()
 #  Use cpp code in the shared library to calculate the kernel design matrix
