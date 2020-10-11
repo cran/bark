@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # bark: Bayesian Additive Regression Kernels
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/merliseclyde/bark.svg?branch=master)](https://travis-ci.org/merliseclyde/bark)
+[![Travis build status](https://travis-ci.com/merliseclyde/bark.svg?branch=master)](https://travis-ci.com/merliseclyde/bark)
 [![Codecov test coverage](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg)](https://codecov.io/gh/merliseclyde/bark?branch=master)
 <!-- badges: end -->
 
