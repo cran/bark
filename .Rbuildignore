@@ -4,3 +4,4 @@
 .git/*
 ^README\.Rmd$
 ^\.travis\.yml$
+^codecov\.yml$

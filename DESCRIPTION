@@ -22,8 +22,11 @@ URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
 Suggests: 
     rmarkdown,
+    knitr,
     roxygen2,
-    testthat
+    testthat,
+    pkgdown,
+    covr
 LazyData: yes
 Repository: CRAN
 NeedsCompilation: yes

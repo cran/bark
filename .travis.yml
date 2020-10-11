@@ -5,4 +5,5 @@ r:
   - release
 global:
   - _R_CRAN_CHECK_INCOMING_=true
-
+after_success:
+    - Rscript -e 'covr::codecov()'

@@ -7,6 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.com/merliseclyde/bark.svg?branch=master)](https://travis-ci.com/merliseclyde/bark)
+[![Codecov test
+coverage](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg)](https://codecov.io/gh/merliseclyde/bark?branch=master)
 <!-- badges: end -->
 
 The bark parkage implements estimation for a Bayesian nonparametric
@@ -45,7 +47,7 @@ fit.bark.d <- bark(traindata$x,
 #> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 2399.207
+#> [1] 2028.502
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing
