@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # bark: Bayesian Additive Regression Kernels
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/merliseclyde/bark.svg?branch=master)](https://travis-ci.com/merliseclyde/bark)
+[![Travis build status](https://travis-ci.org/merliseclyde/bark.svg?branch=master)](https://travis-ci.org/merliseclyde/bark)
 [![Codecov test coverage](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg)](https://codecov.io/gh/merliseclyde/bark?branch=master)
 <!-- badges: end -->
 
@@ -63,4 +63,4 @@ The plot below shows posterior draws of the $\lambda$ for the simulated data.
 boxplot(as.data.frame(fit.bark.d$theta.lambda))
 ```
 
-The posterior distibution for $\labmda_1$ and $\lambda_4$ are concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the mean function.
+The posterior distibution for $\lambda_1$ and $\lambda_4$ are concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the mean function.

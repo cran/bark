@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.com/merliseclyde/bark.svg?branch=master)](https://travis-ci.com/merliseclyde/bark)
+status](https://travis-ci.org/merliseclyde/bark.svg?branch=master)](https://travis-ci.org/merliseclyde/bark)
 [![Codecov test
 coverage](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg)](https://codecov.io/gh/merliseclyde/bark?branch=master)
 <!-- badges: end -->
@@ -47,7 +47,7 @@ fit.bark.d <- bark(traindata$x,
 #> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 2028.502
+#> [1] 1138.052
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing
@@ -63,6 +63,6 @@ boxplot(as.data.frame(fit.bark.d$theta.lambda))
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The posterior distibution for \(\labmda_1\) and \(\lambda_4\) are
+The posterior distibution for \(\lambda_1\) and \(\lambda_4\) are
 concentrated at zero, which leads to \(x_1\) and \(x_2\) dropping from
 the mean function.
