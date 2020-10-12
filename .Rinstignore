@@ -1,0 +1,8 @@
+doc/.*[.]tex$
+doc/eps/.*$
+doc/.*[.]gz$
+doc/.*[.]nav$
+doc/.*[.]toc$
+doc/.*[.]log$
+doc/.*[.]aux$
+doc/.*[.]snm$

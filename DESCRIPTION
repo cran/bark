@@ -33,3 +33,4 @@ NeedsCompilation: yes
 ByteCompile: yes
 Encoding: UTF-8
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr
