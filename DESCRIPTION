@@ -25,7 +25,6 @@ Suggests:
     knitr,
     roxygen2,
     testthat,
-    pkgdown,
     covr
 LazyData: yes
 Repository: CRAN
