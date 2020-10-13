@@ -22,11 +22,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Installation
 
-Install from github  (needs C++ compilation)
+To get the latest version , install from github  (needs C++ compilation))
 
-```{r}
+```{r, eval=FALSE}
 devtools::install_github("merliseclyde/bark")
+```
+
+### Load Packages
+```{r}
 library(bark)
+bart.available =  require(BART)
+svm.available  =  require(e1071)
 ```
 
 
@@ -35,7 +41,7 @@ library(bark)
 ```{r}
 set.seed(42)
 n = 500
-circle2 = as.data.frame(sim_circle(n, dim = 2))
+circle2 = as.data.frame(bark::sim_circle(n, dim = 2))
 
 ```
 
@@ -43,7 +49,7 @@ circle2 = as.data.frame(sim_circle(n, dim = 2))
 plot(x.1 ~ x.2, data=circle2, col=y+1)
 ```
 
-```{r}
+```{r bark}
 set.seed(42)
 train = sample(1:n, size = floor(n/2), rep=FALSE)
 circle2.bark = bark(as.matrix(circle2[train, 1:2]), circle2[train, 3], 
@@ -60,31 +66,44 @@ mean((circle2.bark$yhat.test.mean > 0) != circle2[-train, "y"])
 
 ## SVM
 
-```{r}
-library(e1071)
+```{r svm}
+if (svm.available) {
+  circle2.svm = svm(y ~ x.1 + x.2, data=circle2[train,], type="C")
+  pred.svm = predict(circle2.svm, circle2[-train,])
+  mean(pred.svm != circle2[-train, "y"])
+}
+
 ```
 
-```{r}
-circle2.svm = svm(y ~ x.1 + x.2, data=circle2[train,], type="C")
-pred.svm = predict(circle2.svm, circle2[-train,])
-mean(pred.svm != circle2[-train, "y"])
+
+```{r bart}
+if (bart.available) {
+  circle.bart = pbart(x.train = circle2[train, 1:2], 
+                            y.train =  circle2[train, "y"])
+  pred.bart =   predict(circle.bart, circle2[-train, 1:2])
+  mean((pred.bart$prob.test.mean > .5) != circle2[-train, "y"])
+} 
 ```
 
+Compare classification across methods.
+```{r plots}
 
-```{r}
-library(BART)
-circle.bart = pbart(x.train = circle2[train, 1:2],  y.train = circle2[train, "y"])
-pred.bart = predict(circle.bart, circle2[-train, 1:2])
-mean((pred.bart$prob.test.mean > .5) != circle2[-train, "y"])
-```
+plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, 
+     col=(1 + (circle2.bark$yhat.test.mean > 0)),
+     main="bark")
 
-```{r}
+if (bart.available) {
+  plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, 
+       col= ( 1 + (pred.bart$prob.test.mean > .5)), 
+       main="BART")
+}
 
-plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, col=(1 +( circle2.bark$yhat.test.mean > 0)), main="bark")
+if (svm.available) {
+plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, 
+     col= as.numeric(pred.svm), 
+     main="svm")
+}
 
-plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, col= as.numeric(pred.svm), main="svm")
-
-plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, col= ( 1 + (pred.bart$prob.test.mean > .5)), main="BART")
 
 ```
 

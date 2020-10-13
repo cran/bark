@@ -21,6 +21,8 @@ License: GPL (>= 2)
 URL: http://www.r-project.org, http://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
 Suggests: 
+    BART,
+    e1071,
     rmarkdown,
     knitr,
     roxygen2,
