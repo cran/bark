@@ -3,6 +3,8 @@ cache: packages
 r:
   - devel
   - release
+os:
+  - osx
 global:
   - _R_CRAN_CHECK_INCOMING_=true
 after_success:
