@@ -9,3 +9,10 @@ inst/doc/*.tex
 inst/doc/*.ps
 inst/doc/*.eps
 ^cran-comments\.md$
+*.html
+^\\.github
+
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
