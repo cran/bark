@@ -12,11 +12,11 @@
 
 * added unit test in `testthat`
 
-* converted all helpfiles to use `roxygen` tags
+* converted all help files to use `roxygen` tags
 
 ## Bugs
 
-Todo 
+To Do 
 
 * fix `src/kernelCalculationCall.cpp` (`testthat/test-llike.R`) 
 

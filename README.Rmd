@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg)](https://codecov.io/gh/merliseclyde/bark?branch=master)
 <!-- badges: end -->
 
-The bark parkage implements estimation for a Bayesian nonparametric regression model represented as a sum of multivariate Gaussian kernels as a flexible model to capture nonlinearities, interactions and feature selection.
+The bark package implements estimation for a Bayesian nonparametric regression model represented as a sum of multivariate Gaussian kernels as a flexible model to capture nonlinearities, interactions and feature selection.
 
 ## Installation
 
@@ -63,4 +63,4 @@ The plot below shows posterior draws of the $\lambda$ for the simulated data.
 boxplot(as.data.frame(fit.bark.d$theta.lambda))
 ```
 
-The posterior distibution for $\lambda_1$ and $\lambda_4$ are concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the mean function.
+The posterior distribution for $\lambda_1$ and $\lambda_4$ are concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the mean function.

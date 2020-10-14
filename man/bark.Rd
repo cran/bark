@@ -28,7 +28,7 @@ with (as usual) rows corresponding to observations
 and columns to variables.}
 
 \item{y.train}{Dependent variable for training (in sample) data.\cr
-If y is numeric a continous response model is fit (normal errors).\cr
+If y is numeric a continuous response model is fit (normal errors).\cr
 If y is a logical (or just has values 0 and 1),
 then a binary response model with a probit link is fit.}
 
@@ -38,12 +38,12 @@ Should have same structure as x.train.}
 \item{type}{BARK type, \emph{e}, \emph{d}, \emph{se}, or \emph{sd}, default
 choice is \emph{se}.\cr
 \emph{e}: BARK with equal weights.\cr
-\emph{d}: BARK with diffeerent weights.\cr
+\emph{d}: BARK with different weights.\cr
 \emph{se}: BARK with selection and equal weights.\cr
 \emph{sd}: BARK with selection and different weights.\cr}
 
 \item{classification}{TRUE/FALSE logical variable,
-indicating a classfication or regression problem.}
+indicating a classification or regression problem.}
 
 \item{keepevery}{Every keepevery draw is kept to be returned to the user}
 
@@ -58,7 +58,7 @@ nkeep*keepevery iterations after the burn in.}
 \item{keeptrain}{Logical, whether to keep results for training samples.}
 
 \item{fixed}{A list of fixed hyperparameters, using the default values if not
-sepecified.\cr
+specified.\cr
 alpha = 1: stable index, must be 1 currently.\cr
 eps = 0.5: approximation parameter.\cr
 gam = 5: intensity parameter.\cr
@@ -67,7 +67,7 @@ lb = 2: second argument of the gamma prior on kernel scales.\cr
 pbetaa = 1: first argument of the beta prior on plambda.\cr
 pbetab = 1: second argument of the beta prior on plambda.\cr
 n: number of training samples, automatically generates.\cr
-p: number of explainatory variables, automatically generates.\cr
+p: number of explanatory variables, automatically generates.\cr
 meanJ: the expected number of kernels, automatically generates.}
 
 \item{tune}{A list of tuning parameters, not expected to change.\cr
@@ -120,7 +120,8 @@ BARK is a Bayesian \emph{sum-of-kernels} model.\cr
 For numeric response \eqn{y}, we have
 \eqn{y = f(x) + \epsilon}{y = f(x) + e},
 where \eqn{\epsilon \sim N(0,\sigma^2)}{e ~ N(0,sigma\^2)}.\cr
-For a binary response \eqn{y}, \eqn{P(Y=1 | x) = F(f(x))}, where \eqn{F}
+For a binary response \eqn{y}, \eqn{P(Y=1 | x) = F(f(x))},
+where \eqn{F}
 denotes the standard normal cdf (probit link).
 \cr
 In both cases, \eqn{f} is the sum of many Gaussian kernel functions.
@@ -138,8 +139,8 @@ parameters.
 }
 \details{
 BARK is implemented using a Bayesian MCMC method.
-At each MCMC interation, we produce a draw from the joint posterior
-distribution, i.e. a full configuration of regression coefficents,
+At each MCMC interaction, we produce a draw from the joint posterior
+distribution, i.e. a full configuration of regression coefficients,
 kernel locations and kernel parameters etc.
 
 Thus, unlike a lot of other modelling methods in R,
@@ -176,7 +177,7 @@ mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 }
 \references{
 Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
-Duke University. Ph.D. dissertation, page 58.
+Duke University. PhD dissertation, page 58.
 \cr
 at:
  \url{http://stat.duke.edu/people/theses/OuyangZ.html}

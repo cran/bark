@@ -11,7 +11,7 @@ status](https://travis-ci.com/merliseclyde/bark.svg?branch=master)](https://trav
 coverage](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg)](https://codecov.io/gh/merliseclyde/bark?branch=master)
 <!-- badges: end -->
 
-The bark parkage implements estimation for a Bayesian nonparametric
+The bark package implements estimation for a Bayesian nonparametric
 regression model represented as a sum of multivariate Gaussian kernels
 as a flexible model to capture nonlinearities, interactions and feature
 selection.
@@ -47,7 +47,7 @@ fit.bark.d <- bark(traindata$x,
 #> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 1629.085
+#> [1] 2667.793
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing
@@ -63,6 +63,6 @@ boxplot(as.data.frame(fit.bark.d$theta.lambda))
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-The posterior distibution for \(\lambda_1\) and \(\lambda_4\) are
+The posterior distribution for \(\lambda_1\) and \(\lambda_4\) are
 concentrated at zero, which leads to \(x_1\) and \(x_2\) dropping from
 the mean function.
