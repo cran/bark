@@ -116,9 +116,6 @@
 #'
 #' @references Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
 #' Duke University. PhD dissertation, page 58.
-#'\cr
-#' at:
-#'  \url{http://stat.duke.edu/people/theses/OuyangZ.html}
 #' @examples
 #' ##Simulate regression example
 #' # Friedman 2 data set, 200 noisy training, 1000 noise free testing

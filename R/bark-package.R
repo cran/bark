@@ -53,9 +53,8 @@
 #'
 #' @references
 #' Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
-#' Duke University. Ph.D. dissertation, Chapter 3.
-#' \cr
-#' \url{http://stat.duke.edu/people/theses/OuyangZ.html}
+#' Duke University. PhD dissertation, Chapter 3.
+#'
 #'
 #' @import stats
 #'

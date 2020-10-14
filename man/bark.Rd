@@ -178,9 +178,6 @@ mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 \references{
 Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
 Duke University. PhD dissertation, page 58.
-\cr
-at:
- \url{http://stat.duke.edu/people/theses/OuyangZ.html}
 }
 \seealso{
 Other bark functions: 
