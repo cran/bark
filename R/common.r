@@ -84,11 +84,11 @@ matDel <- function(mat, del){
   if(length(del) > J){
     stop("**ERROR[matDel]: Input 'del' is longer than dimension of 'mat'!**");
   }else if(length(del) == J){
-    return(matrix(0, nr=0, nc=dimmat[2]));
+    return(matrix(0, nrow=0, ncol=dimmat[2]));
   }else if(length(del) +1 == J){
-    return(matrix(mat[-del, ], nr=1));
+    return(matrix(mat[-del, ], nrow=1));
   }else{
-    return(matrix(mat[-del, ], nc=dimmat[2]));
+    return(matrix(mat[-del, ], ncol=dimmat[2]));
   }
 }
 
@@ -108,7 +108,7 @@ matUpd <- function(mat, upd, ind){
   }
   mat[ind, ] <- upd;
   if(dimmat[1] == 1){
-    mat <- matrix(mat, nr=1);
+    mat <- matrix(mat, nrow=1);
   }
   return(mat);
 }
@@ -121,7 +121,7 @@ updacc <- function(acc,    # acceptance rate matrix
   len <- dim(acc)[1];
   lencur <- length(cur);
   if(!names(cur)[lencur] %in% rownames(acc)){
-    acc <- matAdd(acc, matrix(c(cur[[lencur]], 1), nr=1));
+    acc <- matAdd(acc, matrix(c(cur[[lencur]], 1), nrow=1));
     rownames(acc)[len+1] <- names(cur)[lencur];
   }else{
     ind <- which(names(cur)[lencur] == rownames(acc));

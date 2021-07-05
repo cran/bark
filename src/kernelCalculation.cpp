@@ -6,10 +6,13 @@
 
 using namespace std;
 
+
+
 extern "C"{
   // getDesignCpp: To calculate the design matrix in cpp code.
   //  Diagonal kernels with maximum 1.
-  int getDesignCpp(double *x,  	// n*d, data matrix vector
+
+void getDesignCpp(double *x,  	// n*d, data matrix vector
 		   double *c,  	// p*d, center matrix vector
 		   double *l,  	// d*1, kernel vector
 		   int *isi,    // p*1, indicator of intercept
@@ -19,16 +22,16 @@ extern "C"{
 		   double *z	// n*p, design matrix in a vector
 		   ){
     int i, j, k;
-    double prodl, eitem, esum;
-    
+    double eitem, esum;
+
     //Calculate the exponent multiplied by the constant
     for(i=0; i<*n; i++){
       for(j=0; j<*p; j++){
-	if(isi[j] == 1){
+	if(isi[j] == 1)  {
 	  z[i+j*(*n)] = 1;
-	}else{
+	} else{
 	  esum = 0.0;
-	  for(k=0; k<*d; k++){
+	  for(k=0; k<*d; k++) {
 	    eitem = x[i+(*n)*k] - c[j+(*p)*k];
 	    esum -= l[k] * eitem * eitem;
 	  }
@@ -36,6 +39,5 @@ extern "C"{
 	}
       }
     }
-    return 1;
   }
 }

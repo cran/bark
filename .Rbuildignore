@@ -1,0 +1,15 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.travis.yml
+.git/*
+^README\.Rmd$
+^\.travis\.yml$
+^codecov\.yml$
+inst/doc/*.tex
+inst/doc/*.ps
+inst/doc/*.eps
+^cran-comments\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$

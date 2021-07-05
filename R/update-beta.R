@@ -17,7 +17,7 @@ updatebeta <- function(y,          # response varaible continuous/[0/1] depend o
   if(is.null(fullXX)){
     XX <- getdesign(X, X, theta);
   }else{
-    XX <- matrix(fullXX[, theta$nvec>0], nc=sum(theta$nvec>0));
+    XX <- matrix(fullXX[, theta$nvec>0], ncol=sum(theta$nvec>0));
   }
   varphiovern <- theta$varphi[theta$nvec>0]/theta$nvec[theta$nvec>0]^2;
   evv <- eigen(t(XX)%*%XX, symmetric=TRUE, EISPACK=TRUE);

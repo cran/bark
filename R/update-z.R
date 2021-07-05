@@ -15,7 +15,7 @@ updatez <- function(y,          # response varaible continuous/[0/1] depend on c
   if(is.null(fullXX)){
     XX <- getdesign(X, X, theta);
   }else{
-    XX <- matrix(fullXX[, theta$nvec>0], nc=sum(theta$nvec>0));
+    XX <- matrix(fullXX[, theta$nvec>0], ncol=sum(theta$nvec>0));
   }
   z <- rep(NA, length(y));
   u <- runif(length(y));
