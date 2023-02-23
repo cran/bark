@@ -2,7 +2,7 @@ Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
 Version: 1.0.0
-Date: 2020-10-06
+Date: 2022-10-06
 Author: Zhi Ouyang <zhi.ouyang@gmail.com>, Merlise Clyde
         <clyde@stat.duke.edu>, Robert Wolpert <wolpert@stat.duke.edu>
 Maintainer: Merlise Clyde <clyde@stat.duke.edu>

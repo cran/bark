@@ -13,3 +13,4 @@ inst/doc/*.eps
 ^docs$
 ^pkgdown$
 ^\.github$
+run-checks.R
