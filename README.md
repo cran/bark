@@ -28,7 +28,7 @@ install.packages("bark")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+require("devtools")
 devtools::install_github("merliseclyde/bark")
 ```
 
@@ -47,22 +47,22 @@ fit.bark.d <- bark(traindata$x,
 #> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 2667.793
+#> [1] 1230.517
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing
-parameters for every dimension of the inputs \(x\) as well as selection
-of inputs by allowing the kernel smoothing parameters to be zero.
+parameters for every dimension of the inputs $x$ as well as selection of
+inputs by allowing the kernel smoothing parameters to be zero.
 
-The plot below shows posterior draws of the \(\lambda\) for the
-simulated data.
+The plot below shows posterior draws of the $\lambda$ for the simulated
+data.
 
 ``` r
 boxplot(as.data.frame(fit.bark.d$theta.lambda))
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-The posterior distribution for \(\lambda_1\) and \(\lambda_4\) are
-concentrated at zero, which leads to \(x_1\) and \(x_2\) dropping from
-the mean function.
+The posterior distribution for $\lambda_1$ and $\lambda_4$ are
+concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the
+mean function.

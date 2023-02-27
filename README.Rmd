@@ -26,14 +26,14 @@ The bark package implements estimation for a Bayesian nonparametric regression m
 
 You can install the released version of bark from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+```{r eval=FALSE}
 install.packages("bark")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
-``` r
-# install.packages("devtools")
+```{r eval=FALSE}
+require("devtools")
 devtools::install_github("merliseclyde/bark")
 ```
 ## Example
