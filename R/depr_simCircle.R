@@ -21,7 +21,7 @@
 #' @references Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
 #' Duke University. PhD dissertation, Chapter 3.
 #' \cr
-#' \url{http://stat.duke.edu/people/theses/OuyangZ.html}
+#' 
 #'
 #' @name  sim.Circle-deprecated
 #' @usage sim.Circle(n, dim=5)

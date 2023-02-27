@@ -3,6 +3,7 @@
 .travis.yml
 .git/*
 ^README\.Rmd$
+READM.md
 ^\.travis\.yml$
 ^codecov\.yml$
 inst/doc/*.tex
@@ -14,4 +15,3 @@ inst/doc/*.eps
 ^pkgdown$
 ^\.github$
 run-checks.R
-svm-bark-bart-comparison.Rmd
