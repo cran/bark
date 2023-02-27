@@ -14,4 +14,4 @@ inst/doc/*.eps
 ^pkgdown$
 ^\.github$
 run-checks.R
-svm-bark-comparison.Rmd
+svm-bark-bart-comparison.Rmd
