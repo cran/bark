@@ -32,7 +32,7 @@ sim_circle(n=100, dim=5)
 Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
 Duke University. PhD dissertation, Chapter 3.
 \cr
-\url{http://stat.duke.edu/people/theses/OuyangZ.html}
+\url{https://stat.duke.edu/people/theses/OuyangZ.html}
 }
 \seealso{
 Other bark simulation functions: 

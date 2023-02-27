@@ -16,8 +16,8 @@ bark(
   printevery = 1000,
   keeptrain = FALSE,
   fixed = list(),
-  tune = list(lstep = 0.5, frequL = 0.2, dpow = 1, upow = 0, varphistep = 0.5, phistep
-    = 1),
+  tune = list(lstep = 0.5, frequL = 0.2, dpow = 1, upow = 0, varphistep = 0.5, phistep =
+    1),
   theta = list()
 )
 }

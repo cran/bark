@@ -33,7 +33,6 @@ Outputs are created according to the formula
 Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
 Duke University. PhD dissertation, Chapter 3.
 \cr
-\url{http://stat.duke.edu/people/theses/OuyangZ.html}
 }
 \seealso{
 Other bark deprecated functions: 
