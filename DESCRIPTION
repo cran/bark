@@ -31,5 +31,5 @@ Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Language: en-US
