@@ -1,19 +1,25 @@
 ---
-title: "BARK"
+title: "BARK: Bayesian Adaptive Regression Kernels"
+author: "Merlise A Clyde"
+date: "`r Sys.Date()`"
+r_packages:
+  - rmarkdown
+  - dplyr
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{BARK}
+  %\VignetteIndexEntry{Using the Bark Package for Bayesian Nonparametric Regression}
+  %VignetteEngine{knitr::rmarkdown}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r setup, include=FALSE}
+# require(knitr)
+require(MASS)
+require(dplyr)
 ```
 
-```{r setup}
+
+```{r library}
 library(bark)
 ```

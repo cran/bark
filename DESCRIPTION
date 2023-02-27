@@ -32,6 +32,6 @@ Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.2
 VignetteBuilder: knitr
 Language: en-US
