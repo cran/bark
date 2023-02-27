@@ -2,7 +2,7 @@ Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
 Version: 1.0.0
-Date: 2022-10-06
+Date: 2023-2-27
 Author: Zhi Ouyang <zhi.ouyang@gmail.com>, Merlise Clyde
         <clyde@stat.duke.edu>, Robert Wolpert <wolpert@stat.duke.edu>
 Maintainer: Merlise Clyde <clyde@stat.duke.edu>
@@ -25,13 +25,12 @@ Suggests:
     knitr,
     roxygen2,
     testthat,
-    covr,
-    spelling
+    covr
 LazyData: yes
 Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes
 Encoding: UTF-8
 RoxygenNote: 7.2.2
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown
 Language: en-US
