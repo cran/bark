@@ -35,6 +35,7 @@ devtools::install_github("merliseclyde/bark")
 
 ``` r
 library(bark)
+set.seed(42)
 traindata <- sim_Friedman2(200, sd=125)
 testdata <- sim_Friedman2(1000, sd=0)
 fit.bark.d <- bark(traindata$x, 
@@ -46,7 +47,7 @@ fit.bark.d <- bark(traindata$x,
 #> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 1516.574
+#> [1] 1738.992
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing
