@@ -2,7 +2,7 @@
 % Please edit documentation in R/bark.r
 \name{bark}
 \alias{bark}
-\title{Simulate from the Posterior Distribution of a BARK  Model}
+\title{NonParametric Regression using Bayesian Additive Regression Kernels}
 \usage{
 bark(
   x.train,

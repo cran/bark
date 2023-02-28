@@ -16,7 +16,8 @@ knitr::opts_chunk$set(
 # bark: Bayesian Additive Regression Kernels
 
 <!-- badges: start -->
-[![codecov](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg?token=iPCcWEu34R)](https://codecov.io/gh/merliseclyde/bark)
+[![R-CMD-check](https://github.com/merliseclyde/bark/workflows/R-CMD-check/badge.svg)](https://github.com/merliseclyde/bark/actions)
+[![codecov](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg?token=iPCcWEu34R)](https://app.codecov.io/gh/merliseclyde/bark)
 <!-- badges: end -->
 
 The bark package implements estimation for a Bayesian nonparametric regression model represented as a sum of multivariate Gaussian kernels as a flexible model to capture nonlinearities, interactions and feature selection.
@@ -29,7 +30,7 @@ You can install the released version of bark from [CRAN](https://CRAN.R-project.
 install.packages("bark")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from [GitHub](https://github.com/merliseclyde/bark) with:
 
 ```{r eval=FALSE}
 require("devtools")
@@ -41,6 +42,7 @@ devtools::install_github("merliseclyde/bark")
 
 ```{r example}
 library(bark)
+set.seed(42)
 traindata <- sim_Friedman2(200, sd=125)
 testdata <- sim_Friedman2(1000, sd=0)
 fit.bark.d <- bark(traindata$x, 

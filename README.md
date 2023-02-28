@@ -5,7 +5,8 @@
 
 <!-- badges: start -->
 
-[![codecov](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg?token=iPCcWEu34R)](https://codecov.io/gh/merliseclyde/bark)
+[![R-CMD-check](https://github.com/merliseclyde/bark/workflows/R-CMD-check/badge.svg)](https://github.com/merliseclyde/bark/actions)
+[![codecov](https://codecov.io/gh/merliseclyde/bark/branch/master/graph/badge.svg?token=iPCcWEu34R)](https://app.codecov.io/gh/merliseclyde/bark)
 <!-- badges: end -->
 
 The bark package implements estimation for a Bayesian nonparametric
@@ -22,7 +23,8 @@ You can install the released version of bark from
 install.packages("bark")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from
+[GitHub](https://github.com/merliseclyde/bark) with:
 
 ``` r
 require("devtools")
@@ -44,7 +46,7 @@ fit.bark.d <- bark(traindata$x,
 #> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 1903.873
+#> [1] 1516.574
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing

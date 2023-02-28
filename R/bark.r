@@ -1,4 +1,4 @@
-#' @title Simulate from the Posterior Distribution of a BARK  Model
+#' @title NonParametric Regression using Bayesian Additive Regression Kernels
 #' @description BARK is a Bayesian \emph{sum-of-kernels} model.\cr
 #' For numeric response \eqn{y}, we have
 #' \eqn{y = f(x) + \epsilon}{y = f(x) + e},

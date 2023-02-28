@@ -8,3 +8,4 @@ src/*.dll
 .Rproj.user
 
 docs
+inst/doc
