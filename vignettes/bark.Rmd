@@ -55,7 +55,8 @@ set.seed(42)
 fit.bark.d <- bark(y ~ ., data.frame(traindata),
                    x.test= testdata$x,
                    classification=FALSE, 
-                   type="d",
+                   selection = FALSE,
+                   common_lambdas = FALSE,
                    nburn = 100,
                    nkeep = 250,
                    printevery = 10^10)
@@ -69,7 +70,8 @@ set.seed(42)
 fit.bark.sd <- bark(y ~ ., data=data.frame(traindata),
                     x.test=testdata$x,
                     classification=FALSE, 
-                    type="sd", 
+                    selection = TRUE,
+                    common_lambdas = FALSE,
                     nburn = 100,
                     nkeep = 250,
                     printevery = 10^10)
@@ -124,7 +126,8 @@ plot(x.1 ~ x.2, data=circle2, col=y+1)
 circle2.bark = bark(y ~ ., data=circle2, subset=train,
                     x.test = as.matrix(circle2[-train, 1:2]),
                     classification = TRUE,
-                    type="se",
+                    selection = TRUE,
+                    common_lambdas = TRUE,
                     nburn = 100,
                     nkeep = 250,
                     printevery = 10^10)

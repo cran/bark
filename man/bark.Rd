@@ -10,7 +10,8 @@ bark(
   subset,
   na.action = na.omit,
   x.test = matrix(0, 0, 0),
-  type = "se",
+  selection = TRUE,
+  common_lambdas = TRUE,
   classification = FALSE,
   keepevery = 100,
   nburn = 100,
@@ -40,12 +41,14 @@ contain NAs. The default is "na.omit".}
 \item{x.test}{Explanatory variables for test (out of sample) data.\cr
 Should have same structure as x.train.}
 
-\item{type}{BARK type, \emph{e}, \emph{d}, \emph{se}, or \emph{sd}, default
-choice is \emph{se}.\cr
-\emph{e}: BARK with equal weights.\cr
-\emph{d}: BARK with different weights.\cr
-\emph{se}: BARK with selection and equal weights.\cr
-\emph{sd}: BARK with selection and different weights.\cr}
+\item{selection}{Logical variable indicating whether variable 
+dependent kernel parameters \eqn{\lambda} may be set to zero in the MCMC; 
+default is TRUE. \cr}
+
+\item{common_lambdas}{Logical variable indicating whether
+kernel parameters \eqn{\lambda} should be predictor specific or common across
+predictors;  default is TRUE.   Note if  \emph{common_lambdas = TRUE} and 
+\emph{selection = TRUE} this applies just to the non-zero \eqn{lambda_j}. \cr}
 
 \item{classification}{TRUE/FALSE logical variable,
 indicating a classification or regression problem.}
@@ -167,7 +170,9 @@ traindata <- data.frame(sim_Friedman2(200, sd=125))
 testdata <- sim_Friedman2(1000, sd=0)
 fit.bark.d <- bark(y ~ ., data=traindata, x.test= testdata$x,
                    nburn=10, nkeep=100, keepevery=10,
-                   classification=FALSE, type="d")
+                   classification=FALSE, 
+                   common_lambdas = FALSE,
+                   selection = FALSE)
 boxplot(data.frame(fit.bark.d$theta.lambda))
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 \dontrun{
@@ -177,7 +182,9 @@ mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
  traindata <- sim_Circle(200, dim=5)
  testdata <- sim_Circle(1000, dim=5)
- fit.bark.se <- bark(y ~ , data=data.frame(traindata),  testdata$x, classification=TRUE, type="se")
+ fit.bark.se <- bark(y ~ , data=data.frame(traindata), 
+                     testdata$x, 
+                     classification=TRUE)
  boxplot(as.data.frame(fit.bark.se$theta.lambda))
  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 }

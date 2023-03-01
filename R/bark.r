@@ -35,8 +35,8 @@
 #' default is TRUE. \cr
 #' @param common_lambdas Logical variable indicating whether  
 #' kernel parameters \eqn{\lambda} should be predictor specific or common across
-#' predictors;  default is TRUE.   Note if  \emp{common_lambdas = TRUE} and 
-#' \emp{selection = TRUE} this applies just to the non-zero \eqn{lambda_j}. \cr
+#' predictors;  default is TRUE.   Note if  \emph{common_lambdas = TRUE} and 
+#' \emph{selection = TRUE} this applies just to the non-zero \eqn{lambda_j}. \cr
 #' @param classification TRUE/FALSE logical variable,
 #' indicating a classification or regression problem.
 #' @param keepevery  Every keepevery draw is kept to be returned to the user
