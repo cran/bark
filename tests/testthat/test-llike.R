@@ -28,7 +28,7 @@ test_that("Using .Call getDesignCall Check Types", {
                                    L = rep(1L, d),
                                    intercept=rep(1L,p)))
   
-  expect_true(is.matrix(bark:::createDesignCall(train$x,
+  expect_true(is.matrix(createDesignCall(train$x,
                                          center=train$x,
                                          L = rep(.5, d),
                                          intercept=rep(1L,p))))
@@ -47,4 +47,22 @@ test_that("Using .Call getDesignCall Check dimensions", {
                                 center=train$x,
                                 L = rep(.5, d),
                                 intercept=rep(1,p)))
+})
+
+test_that(".Call and .C", {
+  n = 100; d=2
+  p = n
+  train = sim_circle(n, d) #
+  expect_equivalent(createDesignCall(train$x,
+                                     center=train$x,
+                                     L = rep(.5, d),
+                                     intercept=rep(1L,p)),
+                    createDesign(train$x,
+                                 center=train$x,
+                                 L = rep(.5, d),
+                                 intercept=rep(1L,p),
+                                 n,
+                                 p,
+                                 d))
+  
 })
