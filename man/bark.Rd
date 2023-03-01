@@ -183,8 +183,9 @@ mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
  traindata <- sim_Circle(200, dim=5)
  testdata <- sim_Circle(1000, dim=5)
- fit.bark.se <- bark(y ~ ., data=data.frame(traindata), 
-                     x.test= data.frame(testdata), 
+ fit.bark.se <- bark(y ~ ., 
+                     data=data.frame(traindata), 
+                     testdata= data.frame(testdata), 
                      classification=TRUE)
  boxplot(as.data.frame(fit.bark.se$theta.lambda))
  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)

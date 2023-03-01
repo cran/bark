@@ -142,8 +142,9 @@
 #'  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
 #'  traindata <- sim_Circle(200, dim=5)
 #'  testdata <- sim_Circle(1000, dim=5)
-#'  fit.bark.se <- bark(y ~ ., data=data.frame(traindata), 
-#'                      x.test= data.frame(testdata), 
+#'  fit.bark.se <- bark(y ~ ., 
+#'                      data=data.frame(traindata), 
+#'                      testdata= data.frame(testdata), 
 #'                      classification=TRUE)
 #'  boxplot(as.data.frame(fit.bark.se$theta.lambda))
 #'  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
@@ -201,15 +202,22 @@ bark <- function(formula, data, subset, na.action = na.omit,
   else
     problem <- "regression problem"
 
-  if (verbose)  print(paste("Starting BARK-", type, " for this ", problem, sep=""))
   
   # specifiy type of model for lambda's
-  if (common_lambdas) 
+  if (common_lambdas) {
     type = "e"
-  else
+    prior = "equal lambdas"}
+  else {
     type = "d"
+    prior = "different lambdas"
+  }
+  if (selection)  {
+    type= paste0("s", type)
+    prior = paste(prior, "with selection")
+  }
   
-  if (selection)  type= paste0("s", type)
+  if (verbose)  print(paste("Starting BARK with", type, " for this ", problem, sep=""))
+  
   
   # initializing fixed
   if (is.null(fixed$alpha))
@@ -248,6 +256,8 @@ bark <- function(formula, data, subset, na.action = na.omit,
       x.test = model.matrix(Terms, mtest)
       x.test = scale(x.test, center=x.train.mean, scale = x.train.sd);
     }
+  else 
+    x.test = matrix(NA, nrow=0,ncol=0)
   
   if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
     stop("input x.test must have the same number of columns as x.train")
@@ -339,10 +349,11 @@ bark <- function(formula, data, subset, na.action = na.omit,
     cur <- rjmcmcone(y.train, x.train, theta, fixed, tune, classification, type, fullXX);
     theta <- cur$theta;
     fullXX <- cur$fullXX;
-    if(i %% printevery==0){
-      print(paste("posterior mcmc iteration ", i, ", J=", sum(theta$nvec),
-                  ", max(nj)=", max(theta$nvec), sep=""));
-    }
+    if (verbose) {
+      if(i %% printevery==0){
+       print(paste("posterior mcmc iteration ", i, ", J=", sum(theta$nvec),
+                   ", max(nj)=", max(theta$nvec), sep=""));
+    }}
     if(i %% keepevery==0){
       theta.nvec[i/keepevery, ] <- theta$nvec;
       theta.varphi[i/keepevery, ] <- theta$varphi;
