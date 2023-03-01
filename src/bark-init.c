@@ -9,7 +9,6 @@ extern void getDesignCpp(void *, void *, void *, void *, void *, void *, void *,
 
 /* .Call calls */
 extern SEXP getDesign(SEXP, SEXP, SEXP, SEXP);
-extern SEXP getDesignFail(SEXP, SEXP, SEXP, SEXP);
 
 static const R_CMethodDef CEntries[] = {
   {"getDesignCpp", (DL_FUNC) &getDesignCpp, 8},
@@ -18,7 +17,6 @@ static const R_CMethodDef CEntries[] = {
 
 static const R_CallMethodDef CallEntries[] = {
   {"getDesign", (DL_FUNC) &getDesign, 4},
-  {"getDesignFail", (DL_FUNC) &getDesignFail, 4},
   {NULL, NULL, 0}
 };
 
