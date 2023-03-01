@@ -6,7 +6,7 @@
 #   - getmeanJ()
 
 #
-createDesign <- function(X, center, L, intercept, n,
+createDesignCpp <- function(X, center, L, intercept, n,
                          p, d) {
   z <- .C(C_getDesignCpp,
           as.double(X), # n*d, data matrix vector
@@ -30,6 +30,21 @@ createDesignCall <- function(X, center, L, intercept) {
    if (xdim[2] !=  ldim || xdim[2] != cdim[2] || cdim[1] != idim) {
      stop("diminsions of inputs to createDesign due not conform")
    }
+  .Call(C_getDesign,
+        X, # n*d, data matrix vector
+        center, # p'*d, center matrix vector
+        as.double(L), # d*1, kernel vector
+        as.integer(intercept)) # p'*1, indicator of intercept
+}
+
+createDesign <- function(X, center, L, intercept, n, p, d) {
+  xdim = dim(X)
+  cdim = dim(center)
+  ldim = length(L)
+  idim = length(intercept)
+  if (xdim[2] !=  ldim || xdim[2] != cdim[2] || cdim[1] != idim) {
+    stop("diminsions of inputs to createDesign do not conform")
+  }
   .Call(C_getDesign,
         X, # n*d, data matrix vector
         center, # p'*d, center matrix vector

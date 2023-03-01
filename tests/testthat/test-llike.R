@@ -5,7 +5,7 @@ test_that("Confirm .Call getDesignCall Agrees with Old", {
   better = createDesignCall(train$x, center=train$x,
                             L = rep(.5, d),
                             intercept=rep(1L,p))
-  good =  createDesign(train$x, train$x,
+  good =  createDesignCpp(train$x, train$x,
                        L = rep(.5, d),
                        intercept = rep(1L,p),
                        n=100, p=100, d=2)
@@ -16,7 +16,7 @@ test_that("Confirm .Call getDesignCall Agrees with Old", {
   better = createDesignCall(train$x, center=train$x,
                             L = rep(.5, d),
                             intercept=rep(0L,p))
-  good =  createDesign(train$x, train$x,
+  good =  createDesignCpp(train$x, train$x,
                        L = rep(.5, d),
                        intercept = rep(0L,p),
                        n=100, p=100, d=2)
