@@ -40,9 +40,10 @@ traindata <- sim_Friedman2(200, sd=125)
 testdata <- sim_Friedman2(1000, sd=0)
 fit.bark.d <- bark(y ~ .,  
                    data=data.frame(traindata), 
-                   x.test = testdata$x, 
+                   testdata = data.frame(testdata),
                    classification=FALSE, 
-                   type="sd",
+                   selection = TRUE,
+                   common_lambdas = FALSE,
                    printevery = 10^10)
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
