@@ -10,7 +10,10 @@ test_that("new bark", {
   set.seed(42)
   fit.bark  <- bark(y ~ ., data=data.frame(traindata), x.test=testdata$x,
                     nburn=10, nkeep=100, keepevery=10,
-                    classification=FALSE, type="d", printevery=10^10)
+                    classification = FALSE, 
+                    common_lambdas = FALSE, 
+                    selection = FALSE,
+                    printevery=10^10)
   
   
   
@@ -24,7 +27,7 @@ test_that("new bark", {
    set.seed(42)
    fit.bark  <- bark(y ~ ., data=data.frame(traindata), x.test=testdata$x,
                      nburn=10, nkeep=100, keepevery=10,
-                     classification=FALSE, type="e", printevery=10^10)
+                     classification=FALSE, selection = FALSE, printevery=10^10)
    
    
    
@@ -39,7 +42,8 @@ test_that("new bark", {
    set.seed(42)
    fit.bark  <- bark(y ~ ., data=data.frame(traindata), x.test=testdata$x,
                      nburn=10, nkeep=100, keepevery=10,
-                     classification=FALSE, type="sd", printevery=10^10)
+                     classification=FALSE, common_lambdas=FALSE, 
+                     printevery=10^10)
    
    
    
@@ -54,7 +58,6 @@ test_that("new bark", {
    circle2.bark = bark(y ~ ., data=circle2, subset=train,
                        x.test = as.matrix(circle2[-train, 1:2]),
                        classification = TRUE,
-                       type="se",
                        nburn = 10,
                        nkeep = 100,
                        printevery = 10^10)
@@ -70,4 +73,11 @@ test_that("new bark", {
    expect_equal(mean((circle2.bark$yhat.test.mean > 0) != circle2[-train, "y"]),
                 mean((circle2.bark.depr$yhat.test.mean > 0) != circle2[-train, "y"]))
                 
-})
+
+   expect_error(bark(y ~ ., data=circle2, subset=train,
+                                    x.test = as.matrix(circle2[-train, 1:2]),
+                                    classification = 1,
+                                    nburn = 10,
+                                    nkeep = 10,
+                                    printevery = 10^10))
+   })

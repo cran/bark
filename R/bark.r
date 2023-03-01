@@ -30,12 +30,13 @@
 #' contain NAs. The default is "na.omit".
 #' @param x.test Explanatory variables for test (out of sample) data.\cr
 #' Should have same structure as x.train.
-#' @param type BARK type, \emph{e}, \emph{d}, \emph{se}, or \emph{sd}, default
-#' choice is \emph{se}.\cr
-#' \emph{e}: BARK with equal weights.\cr
-#' \emph{d}: BARK with different weights.\cr
-#' \emph{se}: BARK with selection and equal weights.\cr
-#' \emph{sd}: BARK with selection and different weights.\cr
+#' @param selection Logical variable indicating whether variable 
+#' dependent kernel parameters \eqn{\lambda} may be set to zero in the MCMC; 
+#' default is TRUE. \cr
+#' @param common_lambdas Logical variable indicating whether  
+#' kernel parameters \eqn{\lambda} should be predictor specific or common across
+#' predictors;  default is TRUE.   Note if  \emp{common_lambdas = TRUE} and 
+#' \emp{selection = TRUE} this applies just to the non-zero \eqn{lambda_j}. \cr
 #' @param classification TRUE/FALSE logical variable,
 #' indicating a classification or regression problem.
 #' @param keepevery  Every keepevery draw is kept to be returned to the user
@@ -127,7 +128,9 @@
 # example with a very small number of iterations to illustrate 
 #' fit.bark.d <- bark(y ~ ., data=traindata, x.test= testdata$x,
 #'                    nburn=10, nkeep=100, keepevery=10,
-#'                    classification=FALSE, type="d")
+#'                    classification=FALSE, 
+#'                    common_lambdas = FALSE,
+#'                    selection = FALSE)
 #' boxplot(data.frame(fit.bark.d$theta.lambda))
 #' mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 
@@ -138,7 +141,9 @@
 #'  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
 #'  traindata <- sim_Circle(200, dim=5)
 #'  testdata <- sim_Circle(1000, dim=5)
-#'  fit.bark.se <- bark(y ~ , data=data.frame(traindata),  testdata$x, classification=TRUE, type="se")
+#'  fit.bark.se <- bark(y ~ , data=data.frame(traindata), 
+#'                      testdata$x, 
+#'                      classification=TRUE)
 #'  boxplot(as.data.frame(fit.bark.se$theta.lambda))
 #'  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 #'}
@@ -146,7 +151,8 @@
 #' @export
 bark <- function(formula, data, subset, na.action = na.omit, 
                      x.test = matrix(0, 0, 0),
-                     type = "se",
+                     selection = TRUE,
+                     common_lambdas = TRUE,   
                      classification = FALSE,
                      keepevery = 100,
                      nburn = 100,
@@ -188,14 +194,21 @@ bark <- function(formula, data, subset, na.action = na.omit,
   attr(x.train, "na.action") <- attr(y.train, "na.action") <- attr(m, "na.action")
   
   if (!is.logical(classification))
-    stop("argument classification is not logical")
-  if (!(type %in% c("se", "e", "d", "sd")))
-    stop("type is not recognized, should be 'e', 'se', 'd', or 'sd'")
+    stop("argument classification should be TRUE or FALSE")
   if (classification)
     problem <- "classification problem"
   else
     problem <- "regression problem"
+
   if (verbose)  print(paste("Starting BARK-", type, " for this ", problem, sep=""))
+  
+  # specifiy type of model for lambda's
+  if (common_lambdas) 
+    type = "e"
+  else
+    type = "d"
+  
+  if (selection)  type= paste0("s", type)
   
   # initializing fixed
   if (is.null(fixed$alpha))
@@ -258,7 +271,7 @@ bark <- function(formula, data, subset, na.action = na.omit,
     theta$phi <- 1;
   }
   if(is.null(theta$lamzerop)){
-    if (type == "d" | type == "e"){
+    if (type == "d" | type == "e"){ # no selection
       theta$lamzerop <- 1;
     } else {
       theta$lamzerop <- .5;
