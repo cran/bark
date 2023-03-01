@@ -38,13 +38,12 @@ library(bark)
 set.seed(42)
 traindata <- sim_Friedman2(200, sd=125)
 testdata <- sim_Friedman2(1000, sd=0)
-fit.bark.d <- bark(traindata$x, 
-                   traindata$y, 
-                   testdata$x, 
+fit.bark.d <- bark(y ~ .,  
+                   data=data.frame(traindata), 
+                   x.test = testdata$x, 
                    classification=FALSE, 
                    type="sd",
                    printevery = 10^10)
-#> [1] "Starting BARK-sd for this regression problem"
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 #> [1] 1738.992
@@ -64,5 +63,5 @@ boxplot(as.data.frame(fit.bark.d$theta.lambda))
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 The posterior distribution for $\lambda_1$ and $\lambda_4$ are
-concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the
+concentrated near zero, which leads to $x_1$ and $x_2$ dropping from the
 mean function.
