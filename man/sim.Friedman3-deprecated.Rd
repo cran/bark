@@ -45,6 +45,7 @@ splines. The Annals of Statistics 19 (1), pages 1-67.
 }
 \seealso{
 Other bark deprecated functions: 
+\code{\link{bark-deprecated}},
 \code{\link{bark-package-deprecated}},
 \code{\link{sim.Circle-deprecated}},
 \code{\link{sim.Friedman1-deprecated}},

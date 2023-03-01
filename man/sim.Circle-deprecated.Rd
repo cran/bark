@@ -36,6 +36,7 @@ Duke University. PhD dissertation, Chapter 3.
 }
 \seealso{
 Other bark deprecated functions: 
+\code{\link{bark-deprecated}},
 \code{\link{bark-package-deprecated}},
 \code{\link{sim.Friedman1-deprecated}},
 \code{\link{sim.Friedman2-deprecated}},
