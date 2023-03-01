@@ -1,4 +1,4 @@
-#' @title NonParametric Regression using Bayesian Additive Regression Kernels
+#' @title Nonparametric Regression using Bayesian Additive Regression Kernels
 #' @description BARK is a Bayesian \emph{sum-of-kernels} model.\cr
 #' For numeric response \eqn{y}, we have
 #' \eqn{y = f(x) + \epsilon}{y = f(x) + e},
@@ -28,8 +28,8 @@
 #' used in the fitting process.
 #' @param na.action a function which indicates what should happen when the data
 #' contain NAs. The default is "na.omit".
-#' @param x.test Explanatory variables for test (out of sample) data.\cr
-#' Should have same structure as x.train.
+#' @param testdata Dataframe with test data for out of sample prediction.\cr
+#' Should have same structure as data.
 #' @param selection Logical variable indicating whether variable 
 #' dependent kernel parameters \eqn{\lambda} may be set to zero in the MCMC; 
 #' default is TRUE. \cr
@@ -70,6 +70,7 @@
 #' use defaults if nothing is given.
 #'
 #' @return \code{bark} returns a list, including:
+#'  \item{call}{the matched call}
 #'  \item{fixed}{Fixed hyperparameters}
 #'  \item{tune}{Tuning parameters used}
 #'  \item{theta.last}{The last set of parameters from the posterior draw}
@@ -124,9 +125,9 @@
 #' # Out of sample MSE in SVM (default RBF): 6500 (sd. 1600)
 #' # Out of sample MSE in BART (default):    5300 (sd. 1000)
 #' traindata <- data.frame(sim_Friedman2(200, sd=125))
-#' testdata <- sim_Friedman2(1000, sd=0)
+#' testdata <- data.frame(sim_Friedman2(1000, sd=0))
 # example with a very small number of iterations to illustrate 
-#' fit.bark.d <- bark(y ~ ., data=traindata, x.test= testdata$x,
+#' fit.bark.d <- bark(y ~ ., data=traindata, testdata= testdata,
 #'                    nburn=10, nkeep=100, keepevery=10,
 #'                    classification=FALSE, 
 #'                    common_lambdas = FALSE,
@@ -141,8 +142,8 @@
 #'  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
 #'  traindata <- sim_Circle(200, dim=5)
 #'  testdata <- sim_Circle(1000, dim=5)
-#'  fit.bark.se <- bark(y ~ , data=data.frame(traindata), 
-#'                      testdata$x, 
+#'  fit.bark.se <- bark(y ~ ., data=data.frame(traindata), 
+#'                      x.test= data.frame(testdata), 
 #'                      classification=TRUE)
 #'  boxplot(as.data.frame(fit.bark.se$theta.lambda))
 #'  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
@@ -150,7 +151,7 @@
 #' @family bark functions
 #' @export
 bark <- function(formula, data, subset, na.action = na.omit, 
-                     x.test = matrix(0, 0, 0),
+                     testdata = NULL,
                      selection = TRUE,
                      common_lambdas = TRUE,   
                      classification = FALSE,
@@ -236,17 +237,25 @@ bark <- function(formula, data, subset, na.action = na.omit,
     x.train = scale(x.train);
     x.train.mean <- attr(x.train, "scaled:center");
     x.train.sd <- attr(x.train, "scaled:scale");
-    
-    x.test = scale(x.test, center=x.train.mean, scale = x.train.sd);
+  
+  # extract x.test
+    if (!is.null(testdata)) {
+      if (!is.data.frame(testdata)) {
+        stop("Test data should be povided as a data.frame") }
+      Terms <- delete.response(Terms)
+      mtest <- model.frame(Terms, testdata, 
+                           na.action=na.action)
+      x.test = model.matrix(Terms, mtest)
+      x.test = scale(x.test, center=x.train.mean, scale = x.train.sd);
+    }
   
   if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
     stop("input x.test must have the same number of columns as x.train")
   
   
-  
   if(fixed$p == 1){
     x.train <- matrix(x.train, ncol=1);
-    x.test <- matrix(x.test, ncol=1);
+    x.test <-  matrix(x.test, ncol=1);
   }
   if(!classification){
     y.train.mean <- mean(y.train);
