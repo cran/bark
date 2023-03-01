@@ -17,5 +17,8 @@ test_that("simulations", {
   dat = sim_circle(n)
   expect_no_error(dat)
   expect_warning(sim.Circle(n))
+  
+  expect_error(sim_circle(n, dim=1))
+
 })
 
