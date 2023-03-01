@@ -1,8 +1,8 @@
 test_that("new bark", {
   
   #regression
-  traindata <- sim.Friedman2(200, sd=125)
-  testdata <- sim.Friedman2(1000, sd=0)
+  traindata <- sim_Friedman2(200, sd=125)
+  testdata <- sim_Friedman2(1000, sd=0)
   set.seed(42)
   fit.bark.depc <- bark_mat(traindata$x, traindata$y, testdata$x,
                          nburn=10, nkeep=100, keepevery=10,

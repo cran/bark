@@ -43,6 +43,7 @@ NULL
 #'
 # sim.Friedman3()
 sim.Friedman3 <- function(n, sd=0.1) {
+  .Deprecated("sim_Friedman3")
   x <- cbind(runif(n, min=0, max=100),
              runif(n, min=40*pi, max=560*pi),
              runif(n, min=0, max=1),
