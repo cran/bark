@@ -37,8 +37,8 @@ fliponeL.se <- function(y,
   }else{
     newtheta$L[switchid] <- 0;
     if(d == 0){
-      stop("Impossible");
-    } else if(d == 1){
+      stop("Error: please report bug on https://github.com/merliseclyde/bark 
+           Issue of all porposed lambdas zero with selection and common lambda"); # nocov
       logppratio <- 0;
     }else{
       logppratio <- dgamma(max(theta$L), la, d*lb, log=T) -
@@ -77,7 +77,8 @@ updateoneL.se <- function(y,
 
   d <- sum(theta$L > 0);
   if (d == 0){
-    stop("Not expecting no nonzero lambda update");
+    stop("Not expecting no nonzero lambda update; please report issue
+         on https://github.com/merliseclyde/bark"); # nocov
   }
   movesca <- rlognorm(1, 0, tune$lstep);
   newtheta$L <- theta$L * movesca;
