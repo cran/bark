@@ -39,7 +39,8 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                     classification = FALSE, 
                     common_lambdas = FALSE, 
                     selection = FALSE,
-                    printevery=10^10)
+                    printevery=10^10,
+                    keeptrain = TRUE)
   
   
   
