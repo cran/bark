@@ -36,10 +36,10 @@ fliponeL.se <- function(y,
     logppratio <- logppratio + log((1-lamzerop)/lamzerop);
   }else{
     newtheta$L[switchid] <- 0;
-    if(d == 0){
+    if(d == 0){ # nocov start
       stop("Error: please report bug on https://github.com/merliseclyde/bark 
-           Issue of all porposed lambdas zero with selection and common lambda"); # nocov
-      logppratio <- 0;
+           Issue of all porposed lambdas zero with selection and common lambda")
+      logppratio <- 0; # nocov end
     }else{
       logppratio <- dgamma(max(theta$L), la, d*lb, log=T) -
         dgamma(max(theta$L), la, (d+1)*lb, log=T);
@@ -76,9 +76,9 @@ updateoneL.se <- function(y,
   exptoss <- rexp(1);
 
   d <- sum(theta$L > 0);
-  if (d == 0){
+  if (d == 0){ # nocov start
     stop("Not expecting no nonzero lambda update; please report issue
-         on https://github.com/merliseclyde/bark"); # nocov
+         on https://github.com/merliseclyde/bark"); # nocov end
   }
   movesca <- rlognorm(1, 0, tune$lstep);
   newtheta$L <- theta$L * movesca;
