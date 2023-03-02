@@ -216,7 +216,8 @@ bark <- function(formula, data, subset, na.action = na.omit,
     prior = paste(prior, "with selection")
   }
   
-  if (verbose)  print(paste("Starting BARK with", type, " for this ", problem, sep=""))
+  if (verbose)  print(paste("Starting BARK with", type, " for this ", 
+                            problem, sep=""))
   
   
   # initializing fixed

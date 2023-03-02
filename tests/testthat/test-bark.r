@@ -123,4 +123,10 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                      nburn = 10,
                      nkeep = 10,
                      printevery = 10^10))
+   expect_error(bark(y ~ ., data=circle2, subset=train,
+                        classification = TRUE,
+                        nburn = 10,
+                        nkeep = 10,
+                       fixed = list(alpha = 2.0),
+                        printevery = 10^10))
    })
