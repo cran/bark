@@ -20,7 +20,7 @@ Description: Implementation of BARK: Bayesian Additive Regression
 	may be heavily shrunk to zero under the Cauchy process priors, or even, 
 	set to zero.  The number of active features is controlled by priors on
 	precision parameters within the kernels, permitting feature selection. 
-License: GPL (>= 2)
+License: GPL (>= 3)
 URL: https://www.R-project.org, https://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
 Suggests: 
