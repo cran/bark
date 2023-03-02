@@ -27,6 +27,7 @@ createDesignCall <- function(X, center, L, intercept) {
    cdim = dim(center)
    ldim = length(L)
    idim = length(intercept)
+   
    if (xdim[2] !=  ldim || xdim[2] != cdim[2] || cdim[1] != idim) {
      stop("diminsions of inputs to createDesign due not conform")
    }
@@ -42,8 +43,10 @@ createDesign <- function(X, center, L, intercept, n, p, d) {
   cdim = dim(center)
   ldim = length(L)
   idim = length(intercept)
+
   if (xdim[2] !=  ldim || xdim[2] != cdim[2] || cdim[1] != idim) {
-    stop("diminsions of inputs to createDesign do not conform")
+    stop(paste("diminsions of inputs to createDesign do not conform\n
+         (X, C, L, I) = ",  c(xdim, cdim, ldim, idim)))
   }
   .Call(C_getDesign,
         X, # n*d, data matrix vector
@@ -68,7 +71,7 @@ getdesign <- function(dMat, # n*d, data matrix
   p = length(isi)
   d = ncol(dMat)
   z <- createDesign(dMat, # n*d, data matrix vector
-                    cMat1[nvec > 0, ], # p'*d, center matrix vector
+                    cMat1[nvec > 0, , drop=FALSE], # p'*d, center matrix vector
                     theta$L, # d*1, kernel vector
                     isi, # p'*1, indicator of intercept
                     n, # n, number of observations
@@ -139,6 +142,7 @@ llike <- function(y, # continuous or 0/1 response
   } else {
     XX <- matrix(fullXX[, theta$nvec > 0], ncol = sum(theta$nvec > 0))
   }
+  
   varphiovern <- theta$varphi[theta$nvec > 0] / theta$nvec[theta$nvec > 0]^2
   evv <- eigen(t(XX) %*% XX, symmetric = TRUE)
   if (dim(XX)[2] == 1) {

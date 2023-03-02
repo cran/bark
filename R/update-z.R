@@ -10,7 +10,7 @@ updatez <- function(y,          # response varaible continuous/[0/1] depend on c
                     fullXX=NULL # precalculated XX matrix
                     ){
   if(!classification){
-    stop("ERROR: cannot update z for non probit models.")
+    stop("ERROR: cannot update z for non probit models.")  # nocov
   }
   if(is.null(fullXX)){
     XX <- getdesign(X, X, theta);

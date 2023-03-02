@@ -15,7 +15,7 @@ updatebeta <- function(y,          # response varaible continuous/[0/1] depend o
     theta$phi <- 1;
   }
   if(is.null(fullXX)){
-    XX <- getdesign(X, X, theta);
+    XX <- getdesign(X, X, theta); # nocov  
   }else{
     XX <- matrix(fullXX[, theta$nvec>0], ncol=sum(theta$nvec>0));
   }

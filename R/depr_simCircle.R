@@ -36,8 +36,8 @@ NULL
 ## sim.Circle()
 sim.Circle <- function(n, dim = 5) {
   .Deprecated("sim_circle")
-  if (dim < 2) {
-    stop("number of variables must be >= 2.")  # nocov
+  if (dim < 2) { # start nocov
+    stop("number of variables must be >= 2.")  #  end nocov
   }
   x <- matrix(runif(n * dim, min = -1, max = 1), nrow = n)
   r2 <- x[, 1]^2 + x[, 2]^2
