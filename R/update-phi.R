@@ -12,7 +12,7 @@ updatephi <- function(y,          # response varaible continuous/[0/1] depend on
                       fullXX=NULL # precalculated XX matrix
                       ){
   if(classification){
-    stop("ERROR: cannot update phi for classification problems.")
+    stop("ERROR: cannot update phi for classification problems.") # nocov 
   }
   
   accupdatephi <- 0;

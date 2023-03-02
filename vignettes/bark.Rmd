@@ -1,0 +1,185 @@
+---
+title: "Nonparametric Regression with Bayesian Additive Regression Kernels"
+output: rmarkdown::html_vignette
+author: "Merlise A Clyde"
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Nonparametric Regression with Bayesian Additive Regression Kernels}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+
+
+Bayesian Additive Regression Kernel (BARK) models are a flexible Bayesian nonparametric model for regression and classification problems where the unknown mean function is represented as a weighted sum of multivariate Gaussian kernel functions,
+\begin{equation}
+f(\mathbf{x}) = \sum_j \beta_j  \prod_d \exp( \lambda_d (x_d - \chi_{jd})^2)
+\end{equation}
+that captures nonlinearities, interactions and feature selection 
+using Levy random fields to construct a prior on the unknown function.   Each kernel is centered at location parameters $\chi_{jd}$ with precision parameters $\lambda_d$ - these precision parameters apture the importance of each of the $d$ dimensional predictor variables and by setting a $\lambda_d$ to zero may remove important varialbes that are not important.
+
+
+## Installation
+
+To get the latest version  of {r bark}, install from github  (needs compilation))
+
+```{r, eval=FALSE}
+devtools::install_github("merliseclyde/bark")
+```
+
+```{r}
+library(bark)
+```
+
+## Example
+
+We will illustrate feature selection in a simple simulated example from Friedman
+
+```{r Friedman2}
+set.seed(42)
+traindata <- sim_Friedman2(200, sd=125)
+testdata <- sim_Friedman2(1000, sd=0)
+```
+
+```{r example-all}
+set.seed(42)
+fit.bark.d <- bark(y ~ ., data = data.frame(traindata),
+                   testdata= data.frame(testdata),
+                   classification=FALSE, 
+                   selection = FALSE,
+                   common_lambdas = FALSE,
+                   nburn = 100,
+                   nkeep = 250,
+                   printevery = 10^10)
+
+mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
+
+```
+
+```{r example-selection}
+set.seed(42)
+fit.bark.sd <- bark(y ~ ., data=data.frame(traindata),
+                    testdata = data.frame(testdata),
+                    classification=FALSE, 
+                    selection = TRUE,
+                    common_lambdas = FALSE,
+                    nburn = 100,
+                    nkeep = 250,
+                    printevery = 10^10)
+
+mean((fit.bark.sd$yhat.test.mean-testdata$y)^2)
+
+```
+bark is similar to SVM, however it allows different kernel smoothing parameters 
+for every dimension of the inputs 
+$x$ as well as selection of inputs by allowing the kernel
+smoothing parameters to be zero.
+
+The plot below shows posterior draws of the $\lambda$ for the simulated data.
+
+```{r}
+boxplot(as.data.frame(fit.bark.d$theta.lambda))
+```
+```{r}
+boxplot(as.data.frame(fit.bark.sd$theta.lambda))
+```
+
+The posterior distribution for $\lambda_1$ and $\lambda_4$ are concentrated at zero, which leads to $x_1$ and $x_2$ dropping from the mean function.
+
+
+## Comparison
+We will compare {r bark} to two other popular methods, {r BART} and {r SVM} that provide flexible models that are also non-linear in the input variables. 
+
+```{r}
+bart.available =  require(BART)
+svm.available  =  require(e1071)
+```
+
+
+### Generate data
+
+
+
+```{r}
+set.seed(42)
+n = 500
+circle2 = data.frame(sim_circle(n, dim = 2))
+train = sample(1:n, size = floor(n/2), rep=FALSE)
+```
+
+```{r, fig.width=4, fig.height=4 }
+plot(x.1 ~ x.2, data=circle2, col=y+1)
+```
+
+
+```{r bark}
+
+circle2.bark = bark(y ~ ., data=circle2, subset=train,
+                    testdata = circle2[-train,],
+                    classification = TRUE,
+                    selection = TRUE,
+                    common_lambdas = TRUE,
+                    nburn = 100,
+                    nkeep = 250,
+                    printevery = 10^10)
+```
+
+
+```{r}
+#Classify
+#
+mean((circle2.bark$yhat.test.mean > 0) != circle2[-train, "y"])
+```
+
+## SVM
+
+```{r svm}
+if (svm.available) {
+  circle2.svm = svm(y ~ x.1 + x.2, data=circle2[train,], type="C")
+  pred.svm = predict(circle2.svm, circle2[-train,])
+  mean(pred.svm != circle2[-train, "y"])
+}
+
+```
+
+
+```{r bart}
+if (bart.available) {
+  circle.bart = pbart(x.train = circle2[train, 1:2], 
+                            y.train =  circle2[train, "y"])
+  pred.bart =   predict(circle.bart, circle2[-train, 1:2])
+  mean((pred.bart$prob.test.mean > .5) != circle2[-train, "y"])
+} 
+```
+
+
+Compare classification across methods.
+```{r plots}
+
+plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, 
+     col=(1 + (circle2.bark$yhat.test.mean > 0)),
+     main="bark")
+
+if (bart.available) {
+  plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, 
+       col= ( 1 + (pred.bart$prob.test.mean > .5)), 
+       main="BART")
+}
+
+if (svm.available) {
+plot(x.1 ~ x.2, data=circle2[-train,], pch = y+15, 
+     col= as.numeric(pred.svm), 
+     main="svm")
+}
+
+
+```
