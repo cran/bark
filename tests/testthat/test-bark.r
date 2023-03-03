@@ -56,7 +56,7 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                      testdata =data.frame(testdata),
                      nburn=10, nkeep=100, keepevery=10,
                      classification=FALSE, selection = FALSE, 
-                     printevery=10^10, verbose=TRUE)
+                     printevery = 500, verbose=TRUE)
    
    
    
@@ -132,7 +132,7 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                         printevery = 10^10))
    })
 
-# github issue #2
+# github issue #3
 test_that("test bark with p=1", {
   n = 100; p = 1
   df = data.frame(y = rnorm(n), x = rnorm(n))
@@ -142,6 +142,21 @@ test_that("test bark with p=1", {
                        nkeep = 1000,
                        keepevery = 10,
                        printevery = 10^10))
+  expect_no_error(bark_mat(y.train = df$y, x.train = as.matrix(df$x), 
+                       x.test = as.matrix(df$x), 
+                       classification = FALSE,
+                       nburn = 10,
+                       nkeep = 1000,
+                       keepevery = 10,
+                       printevery = 10^10))
   
+  expect_no_error(bark(y ~ ., data=df, 
+                       classification = FALSE,
+                       nburn = 10,
+                       nkeep = 1000,
+                       keepevery = 10,
+                       selection = TRUE,
+                       common_lambdas = FALSE,
+                       printevery = 10^10))
   
 })
