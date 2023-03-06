@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ## likeli.r
 #  Bayesian Additive Regression Kernel - likelihood functions
 #   - getdesign()

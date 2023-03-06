@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 #' @title Simulated Regression Problem Friedman 3
 #' @description The regression problem Friedman 3 as described in Friedman (1991) and
 #' Breiman (1996). Inputs are 4 independent variables uniformly

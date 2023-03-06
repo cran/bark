@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 #' @title bark:  Bayesian Additive Regression Trees
 #' @description Implementation of Bayesian Additive Regression Kernels
 #'  with Feature Selection for  Nonparametric Regression for

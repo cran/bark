@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 ##death()
 # death step in RJ-MCMC
 #  - death according to multinomial draw w.r.t. power on varphi

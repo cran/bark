@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##common.r
 #  Bayesian Additive Regression Kernel - Commen Functions
 #  Common Distributions

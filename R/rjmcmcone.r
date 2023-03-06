@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##rjmcmcone()
 # one iteration of reversible jump mcmc
 # - choose birth/death/update

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 #' @title Nonparametric Regression using Bayesian Additive Regression Kernels
 #' @description BARK is a Bayesian \emph{sum-of-kernels} model.\cr
 #' For numeric response \eqn{y}, we have
@@ -126,9 +128,9 @@
 #' # Out of sample MSE in BART (default):    5300 (sd. 1000)
 #' traindata <- data.frame(sim_Friedman2(200, sd=125))
 #' testdata <- data.frame(sim_Friedman2(1000, sd=0))
-# example with a very small number of iterations to illustrate 
+# example with a very small number of iterations to illustrate usage
 #' fit.bark.d <- bark(y ~ ., data=traindata, testdata= testdata,
-#'                    nburn=10, nkeep=100, keepevery=10,
+#'                    nburn=10, nkeep=10, keepevery=10,
 #'                    classification=FALSE, 
 #'                    common_lambdas = FALSE,
 #'                    selection = FALSE)
@@ -145,7 +147,8 @@
 #'  fit.bark.se <- bark(y ~ ., 
 #'                      data=data.frame(traindata), 
 #'                      testdata= data.frame(testdata), 
-#'                      classification=TRUE)
+#'                      classification=TRUE,
+#'                      nburn=100, nkeep=200, )
 #'  boxplot(as.data.frame(fit.bark.se$theta.lambda))
 #'  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 #'}

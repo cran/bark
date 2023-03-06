@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 ##birth()
 # birth step in RJ-MCMC
 #  - keep (L, phi/z) fixed, only update (J, ci, varphi)

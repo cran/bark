@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 ## bark-pkg-deprecated.R
 #' @title Deprecated functions in package \pkg{bark}.
 #' @description The functions listed below are deprecated and will be defunct in

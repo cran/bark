@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
 #' @title NonParametric Regression using Bayesian Additive Regression Kernels
 #' @description BARK is a Bayesian \emph{sum-of-kernels} model.\cr
 #' For numeric response \eqn{y}, we have
