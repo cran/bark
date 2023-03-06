@@ -1,0 +1,25 @@
+url:  http://merliseclyde.github.io/bark/
+development: release
+template:
+  bootstrap: 5
+  bootswatch: cosmo
+  docsearch:
+    api_key: 94a8229a313e5475acdeffd26558ce98
+    index_name: bark
+authors:
+  Merlise Clyde:
+    href: http://stat.duke.edu/~clyde
+navbar:
+  title: "bark"
+  left:
+    - text: "Vignettes"
+      href: articles/index.html
+    - text: "Functions"
+      href: reference/index.html
+    - text: "News"
+      href: news/index.html
+  right:
+    - icon: fa-twitter
+      href: https://twitter.com/merliseclyde
+    - icon: fa-github
+      href: https://github.com/merliseclyde/BAS
