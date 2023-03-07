@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##updateL.e()
 updateL.e <- function(y,
                     X,

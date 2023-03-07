@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##fliponeL.sd()
 # flip the sign of one lambda element
 # half half zero nonzero flip, except all zero/nonzero

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 test_that("Confirm .Call getDesignCall Agrees with Old", {
   n = 100; d=2
   p = n

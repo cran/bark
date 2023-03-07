@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##updatebeta()
 # update step for regression coefficients
 #  - conjugate normal update conditional on rest

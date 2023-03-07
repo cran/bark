@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##updatephi()
 # update the noise precision in the normal linear model
 #  - because beta is itegrated out, no conjugate update

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##update()
 # update some parameters within rjmcmc
 # - update ci, varphi  respectively

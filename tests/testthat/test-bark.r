@@ -1,14 +1,13 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 test_that("new bark", {
   
   #regression
   traindata <- sim_Friedman2(200, sd=125)
   testdata <- sim_Friedman2(1000, sd=0)
-  set.seed(42)
-  fit.bark.depc <- bark_mat(traindata$x, traindata$y, testdata$x,
-                         nburn=10, nkeep=100, keepevery=10,
-                         classification=FALSE, type="d", printevery=10^10)
-  set.seed(42)
-  
+ 
+# check main input argument types  
+# no formula (character string)  
 expect_error(bark("y ~ .", data=data.frame(traindata), 
                     testdata= data.frame(testdata),
                     nburn=10, nkeep=100, keepevery=10,
@@ -16,7 +15,8 @@ expect_error(bark("y ~ .", data=data.frame(traindata),
                     common_lambdas = FALSE, 
                     selection = FALSE,
                     printevery=10^10))
-    
+
+# train ata is not a dataframe    
 expect_error(bark(y ~ ., data=traindata, 
                   testdata= data.frame(testdata),
                   nburn=10, nkeep=100, keepevery=10,
@@ -25,6 +25,7 @@ expect_error(bark(y ~ ., data=traindata,
                   selection = FALSE,
                   printevery=10^10))    
 
+# testdata is not a dataframe
 expect_error(bark(y ~ ., data=data.frame(traindata), 
                  testdata=testdata,
                  nburn=10, nkeep=100, keepevery=10,
@@ -32,7 +33,15 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                  common_lambdas = FALSE, 
                  selection = FALSE,
                  printevery=10^10))    
+ 
+  set.seed(42)
+  fit.bark.depc <- bark_mat(traindata$x, traindata$y, testdata$x,
+                            nburn=10, nkeep=100, keepevery=10,
+                            classification=FALSE, type="d", printevery=10^10)
 
+
+
+  set.seed(42)
   fit.bark  <- bark(y ~ ., data=data.frame(traindata), 
                     testdata= data.frame(testdata),
                     nburn=10, nkeep=100, keepevery=10,

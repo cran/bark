@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##fliponeL.se()
 # switch the sign of one lambda element
 fliponeL.se <- function(y,

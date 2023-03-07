@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 #' @title Simulate Data from Hyper-Sphere for Classification Problems
 #' @description The classification problem Circle is described in the BARK paper (2008).
 #' Inputs are \emph{dim} independent variables uniformly

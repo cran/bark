@@ -1,4 +1,6 @@
-##updatez()
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+#updatez()
 # update the augmented normal variable z in a gibbs move for probit model
 # - no need for tuning parameter, always accept
 # - recommend first update beta, then z.

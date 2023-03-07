@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 ##updatevarphi()
 # update step for unit normal precisions
 #  - only update one varphi, where nj>0

@@ -170,7 +170,7 @@ The \eqn{x} is either a row from the training data (x.train)
 traindata <- data.frame(sim_Friedman2(200, sd=125))
 testdata <- data.frame(sim_Friedman2(1000, sd=0))
 fit.bark.d <- bark(y ~ ., data=traindata, testdata= testdata,
-                   nburn=10, nkeep=100, keepevery=10,
+                   nburn=10, nkeep=10, keepevery=10,
                    classification=FALSE, 
                    common_lambdas = FALSE,
                    selection = FALSE)
@@ -186,7 +186,8 @@ mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
  fit.bark.se <- bark(y ~ ., 
                      data=data.frame(traindata), 
                      testdata= data.frame(testdata), 
-                     classification=TRUE)
+                     classification=TRUE,
+                     nburn=100, nkeep=200, )
  boxplot(as.data.frame(fit.bark.se$theta.lambda))
  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 }

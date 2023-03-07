@@ -1,4 +1,5 @@
-//kernelCalculationCall.cpp
+// SPDX-License-Identifier: GPL-3.0-or-later
+// kernelCalculationCall.cpp
 // regression kernel calculations using c++
 
 #include <iostream>
