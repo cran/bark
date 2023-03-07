@@ -1,3 +1,7 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
 #' @title NonParametric Regression using Bayesian Additive Regression Kernels
 #' @description BARK is a Bayesian \emph{sum-of-kernels} model.\cr

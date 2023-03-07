@@ -1,5 +1,9 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
-
+#
 #' @title Simulated Regression Problem Friedman 1
 #' @description The regression problem Friedman 1 as described in Friedman (1991) and
 #' Breiman (1996). Inputs are 10 independent variables uniformly

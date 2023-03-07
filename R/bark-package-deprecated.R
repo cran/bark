@@ -1,4 +1,9 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
+#
 ## bark-pkg-deprecated.R
 #' @title Deprecated functions in package \pkg{bark}.
 #' @description The functions listed below are deprecated and will be defunct in

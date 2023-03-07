@@ -1,5 +1,9 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
-
+#
 #updatez()
 # update the augmented normal variable z in a gibbs move for probit model
 # - no need for tuning parameter, always accept
