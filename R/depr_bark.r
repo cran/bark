@@ -211,14 +211,20 @@ bark_mat <- function(x.train,
   fixed$meanJ <- getmeanJ(fixed$alpha, fixed$eps, fixed$gam);
 
   # centering and scaling
-  x.train.mean <- apply(x.train, 2, mean);
-  x.train.sd <- apply(x.train, 2, sd);
-  for(i in 1:fixed$p){
-    x.train[,i] <- (x.train[,i]-x.train.mean[i])/x.train.sd[i];
-    if(dim(x.test)[1] != 0){
-      x.test[,i] <- (x.test[,i]-x.train.mean[i])/x.train.sd[i];
-    }
-  }
+  
+  x.train = scale(x.train);
+  x.train.mean <- attr(x.train, "scaled:center");
+  x.train.sd <- attr(x.train, "scaled:scale");
+  
+  if(dim(x.test)[1] != 0){ 
+    x.test = scale(x.test, center=x.train.mean, scale = x.train.sd);}
+#  x.train.mean <- apply(x.train, 2, mean);
+#  x.train.sd <- apply(x.train, 2, sd);
+#  for(i in 1:fixed$p){
+#    x.train[,i] <- (x.train[,i]-x.train.mean[i])/x.train.sd[i];
+#    if(dim(x.test)[1] != 0){
+#      x.test[,i] <- (x.test[,i]-x.train.mean[i])/x.train.sd[i];
+## }
   if(fixed$p == 1){
     x.train <- matrix(x.train, ncol=1);
     x.test <- matrix(x.test, ncol=1);

@@ -99,6 +99,8 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                        classification = TRUE,
                        nburn = 10,
                        nkeep = 10,
+                       selection = TRUE,
+                       common_lambdas = TRUE,
                        printevery = 10, verbose = TRUE)
    set.seed(42)
    circle2.bark.depr = bark_mat(y.train=circle2[train,"y"], 
@@ -109,8 +111,8 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                                 nburn = 10,
                                 nkeep = 10,
                                 printevery = 10^10)
-   expect_equal(mean((circle2.bark$yhat.test.mean > 0) != circle2[-train, "y"]),
-                mean((circle2.bark.depr$yhat.test.mean > 0) != circle2[-train, "y"]))
+   expect_equal((circle2.bark$yhat.test.mean > 0) != circle2[-train, "y"],
+                (circle2.bark.depr$yhat.test.mean > 0) != circle2[-train, "y"])
                 
 
    expect_error(bark(y ~ ., data=circle2, subset=train,
