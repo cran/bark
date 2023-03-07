@@ -98,8 +98,8 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                        testdata = circle2[-train, ],
                        classification = TRUE,
                        nburn = 10,
-                       nkeep = 100,
-                       printevery = 10^10)
+                       nkeep = 10,
+                       printevery = 10, verbose = TRUE)
    set.seed(42)
    circle2.bark.depr = bark_mat(y.train=circle2[train,"y"], 
                                 x.train=as.matrix(circle2[train, 1:2]),
@@ -107,7 +107,7 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                                 classification = TRUE,
                                 type="se",
                                 nburn = 10,
-                                nkeep = 100,
+                                nkeep = 10,
                                 printevery = 10^10)
    expect_equal(mean((circle2.bark$yhat.test.mean > 0) != circle2[-train, "y"]),
                 mean((circle2.bark.depr$yhat.test.mean > 0) != circle2[-train, "y"]))
@@ -119,6 +119,14 @@ expect_error(bark(y ~ ., data=data.frame(traindata),
                                     nburn = 10,
                                     nkeep = 10,
                                     printevery = 10^10))
+   
+   # dim of test & training disagree
+   expect_error(bark(y ~ x.1 + x.2., data=circle2, subset=train,
+                     testdata = circle2[-train, "x.1"],
+                     classification = TRUE,
+                     nburn = 10,
+                     nkeep = 10,
+                     printevery = 10^10))
    
    expect_error(bark(y ~ ., data=circle2, subset=train,
                      testdata = as.matrix(circle2[-train, ]),
