@@ -67,3 +67,19 @@ boxplot(as.data.frame(fit.bark.d$theta.lambda))
 ```
 
 The posterior distribution for $\lambda_1$ and $\lambda_4$ are concentrated near zero, which leads to $x_1$ and $x_2$ dropping from the mean function.
+
+## Roadmap for Future Enhancements
+
+Over the next year the following enhancements are planned:
+
+* port more of the R code to C/C++ for improvements in speed
+
+* add S3 methods for `predict`, `summary`, `plot` 
+
+* add additional kernels
+
+* better hyperparameter specification
+
+If there are features you would like to see added, please feel free to create an
+[issue in GitHub](https://github.com/merliseclyde/bark/issues)  and we can
+discuss!

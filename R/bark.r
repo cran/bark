@@ -267,9 +267,12 @@ bark <- function(formula, data, subset, na.action = na.omit,
   else 
     x.test = matrix(NA, nrow=0,ncol=0)
   
-  if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
-    stop("input x.test must have the same number of columns as x.train")
-  
+  # if x.test is missing variables then an error is thrown earlier when 
+  # creating the matrix and error message is produced (in test-bark.R)
+  # start nocov
+  #. if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
+  #     stop("input x.test must have the same number of columns as x.train")
+  # end nocov
   
   if(fixed$p == 1){
     x.train <- matrix(x.train, ncol=1);

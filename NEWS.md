@@ -13,15 +13,14 @@ dataframe as inputs.
 
 * added registration of native routines in foreign function calls and disabled symbol search in `src/bark-init.c` and updated the `NAMESPACE`
 
-
 * replaced kernel calculation using `.C` with `.Call` to improve speed in `src/kernelCalculationCall.cpp` and `R/llike.R`
 
 * added unit tests in `testthat` so that code coverage is reported with CI; 
-  code coverage  badge added to README.   Unit tests now cover over 95% of 
-  the code.
+  code coverage  badge added to README.   Unit tests now cover over 99% of 
+  the code as reported by CodeCov
   
 * added GitHub actions for CI and checks on Windows, MacOSX, and Ubuntu and 
-  added passing Badge to README.md in GitHub repo.
+  added R CMD check passing Badge to README.md in GitHub repo.
 
 * converted all help files to use `roxygen` tags
 
