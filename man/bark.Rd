@@ -169,6 +169,7 @@ The \eqn{x} is either a row from the training data (x.train)
 # Out of sample MSE in BART (default):    5300 (sd. 1000)
 traindata <- data.frame(sim_Friedman2(200, sd=125))
 testdata <- data.frame(sim_Friedman2(1000, sd=0))
+# example with a very small number of iterations to illustrate usage
 fit.bark.d <- bark(y ~ ., data=traindata, testdata= testdata,
                    nburn=10, nkeep=10, keepevery=10,
                    classification=FALSE, 

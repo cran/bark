@@ -4,10 +4,12 @@ Submission of archived package to fix running times
 of examples and bring up to current standards
 
 Updates
-  - added unit tests and code coverage reports (99% code coverage)
+  - added unit tests and code coverage badge that links to reports 
+    (99% code coverage)
   - added GitHub Actions for CI on multiple platforms
   - added registration of native routines in foreign function calls and disabled symbol search in `src/bark-init.c` and updated the `NAMESPACE` using Roxygen2
   - changed function arguments to use a model formula
+  - switched to .Call from .C
   
 ## Test environments
 - local R installation macosx, R 4.2.2
