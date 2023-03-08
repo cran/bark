@@ -140,8 +140,9 @@ The \eqn{x} is either a row from the training data (x.train)
 # Out of sample MSE in BART (default):    5300 (sd. 1000)
 traindata <- sim_Friedman2(200, sd=125)
 testdata <- sim_Friedman2(1000, sd=0)
+example with a very small number of iterations to illustrate the method
 fit.bark.d <- bark_mat(traindata$x, traindata$y, testdata$x,
-                  nburn=10, nkeep=100, keepevery=10,
+                  nburn=10, nkeep=10, keepevery=10,
                   classification=FALSE, type="d")
 boxplot(data.frame(fit.bark.d$theta.lambda))
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
