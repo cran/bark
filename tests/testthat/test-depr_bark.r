@@ -52,6 +52,11 @@ expect_error(bark_mat(x.train=traindata, y.train = traindata$y,
                                       printevery=500))
                              
                              
+   expect_no_error(bark_mat(traindata$x, traindata$y, testdata$x,
+                         nburn=10, nkeep=10, keepevery=10, 
+                         keeptrain=TRUE,
+                         classification=FALSE, type="sd", printevery=10^10))
+   
    expect_error(bark_mat(traindata$x, traindata$y, testdata$x,
                          nburn=10, nkeep=100, keepevery=10, 
                          fixed=list(alpha=2),
