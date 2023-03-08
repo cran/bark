@@ -27,7 +27,7 @@
 #' parameters.
 #'
 #' @param formula model formula for the model with all predictors,
-#' Y ~ X.  THe X variables will be centered and scaled as part of model fitting.
+#' Y ~ X.  The X variables will be centered and scaled as part of model fitting.
 #' @param data a data frame.  Factors will be converted to numerical vectors based on
 #' the using `model.matrix`.
 #' @param subset an optional vector specifying a subset of observations to be

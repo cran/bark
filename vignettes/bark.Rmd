@@ -20,12 +20,15 @@ knitr::opts_chunk$set(
 
 
 
-Bayesian Additive Regression Kernel (BARK) models are a flexible Bayesian nonparametric model for regression and classification problems where the unknown mean function is represented as a weighted sum of multivariate Gaussian kernel functions,
+Bayesian Additive Regression Kernel (BARK) models are a flexible Bayesian
+nonparametric model for regression and classification problems where the unknown
+mean function is represented as a weighted sum of multivariate Gaussian kernel
+functions,
 \begin{equation}
 f(\mathbf{x}) = \sum_j \beta_j  \prod_d \exp( \lambda_d (x_d - \chi_{jd})^2)
 \end{equation}
-that captures nonlinearities, interactions and feature selection 
-using Levy random fields to construct a prior on the unknown function.   Each kernel is centered at location parameters $\chi_{jd}$ with precision parameters $\lambda_d$ - these precision parameters apture the importance of each of the $d$ dimensional predictor variables and by setting a $\lambda_d$ to zero may remove important varialbes that are not important.
+that allows nonlinearities, interactions and feature selection 
+using Levy random fields to construct a prior on the unknown function.   Each kernel is centered at location parameters $\chi_{jd}$ with precision parameters $\lambda_d$ - these precision parameters capture the importance of each of the $d$ dimensional predictor variables and by setting a $\lambda_d$ to zero may remove important variables that are not important.
 
 
 ## Installation

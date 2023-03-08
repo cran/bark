@@ -36,6 +36,6 @@ dataframe as inputs.
 * GitHub Issue #1 Added type checks to `src/kernelCalculationCall.cpp` and coerce inputs to correct type  (unit tests in `testthat/test-llike.R`)  reported at 
 
 
-* GitHub Issue #3  Addressed error in when `p = 1` where subseting 
+* GitHub Issue #3  Addressed error in when `p = 1` where subsetting 
   resulted in output being a vector due to drop in dimension.    Added unit test
   in `testthat/test-bark.R`
