@@ -13,8 +13,8 @@ ch$update()
 # check for M1Mac
 url('https://mac.r-project.org/macbuilder/submit.html')
 
-# https://mac.R-project.org/macbuilder/results/1677812311-886cdf4d4162fdf7/
-# https://mac.R-project.org/macbuilder/results/1677812348-1457701cd8f178a9/  
+# https://mac.R-project.org/macbuilder/results/1678219814-e5a6565487c07387/
+# https://mac.R-project.org/macbuilder/results/1678219851-23a9c6a4871f9469/
 
 # to submit to CRAN
 

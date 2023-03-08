@@ -1,3 +1,7 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 test_that("new bark", {

@@ -1,3 +1,7 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 test_that("old bark", {
@@ -53,7 +57,12 @@ expect_error(bark_mat(x.train=traindata, y.train = traindata$y,
                          fixed=list(alpha=2),
                          classification=FALSE, type="sd", printevery=10^10))
    
-   expect_no_error(bark_mat(traindata$x, traindata$y, testdata$x,
+   
+   expect_error(bark_mat(as.character(traindata$x), traindata$y, testdata$x,
+                            nburn=10, nkeep=10, keepevery=10, 
+                            fixed=list(alpha=1), keeptrain=TRUE,
+                            classification=FALSE, type="sd", printevery=10))
+   expect_error(bark_mat(traindata$x, as.character(traindata$y), testdata$x,
                          nburn=10, nkeep=10, keepevery=10, 
                          fixed=list(alpha=1), keeptrain=TRUE,
                          classification=FALSE, type="sd", printevery=10))
