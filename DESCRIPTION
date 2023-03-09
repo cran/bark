@@ -1,8 +1,8 @@
 Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
-Version: 1.0.1
-Date: 2023-03-08
+Version: 1.0.2
+Date: 2023-03-09
 Authors@R: c(person("Merlise", "Clyde", email="clyde@stat.duke.edu",
 	   		            role=c("aut","cre", "ths"),
 	   		            comment=c("ORCID=0000-0002-3595-1872")
@@ -21,7 +21,10 @@ Description: Bayesian Additive Regression Kernels (BARK) provides
 	set to zero.  The number of active features is controlled by priors on
 	precision parameters within the kernels, permitting feature selection. For 
 	more details see Ouyang, Z (2008) "Bayesian Additive Regression Kernels",
-	Duke University. PhD dissertation, Chapter 3.
+	Duke University. PhD dissertation, Chapter 3 and Wolpert, R. L, Clyde, M.A, 
+	and Tu, C. (2011) "Stochastic Expansions with Continuous Dictionaries:́ Levy
+	Adaptive Regression Kernels. Annals of Statistics 39:1916-1962 
+	<doi:10.1214/11-AOS889>
 License: GPL (>= 3)
 URL: https://www.R-project.org, https://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
