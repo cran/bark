@@ -1,3 +1,9 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
 ##rjmcmcone()
 # one iteration of reversible jump mcmc
 # - choose birth/death/update
@@ -15,8 +21,10 @@ rjmcmcone <- function(y,          # response varaible continuous/[0/1] depend on
   if(is.null(fullXX)){
     fullXX <- getfulldesign(X, X, theta);
   }
-  J <- sum(theta$nvec);
-  if(J==1){
+  J <- sum(theta$nvec);   # if(J == 0)  browser()
+  if(J==0){
+    pbd <- list(pbJ=1, pdJ=.0, pbJp1=.5, pdJp1=.5, pbJm1=NA, pdJm1=NA);
+  } else if(J==1){
     pbd <- list(pbJ=.8, pdJ=.0, pbJp1=.4, pdJp1=.4, pbJm1=NA, pdJm1=NA);
   }else if(J==2){
     pbd <- list(pbJ=.4, pdJ=.4, pbJp1=.4, pdJp1=.4, pbJm1=.8, pdJm1=.0);

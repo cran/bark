@@ -1,18 +1,41 @@
 Package: bark
 Type: Package
-Title: Bayesian Additive Regresssion Kernels
-Version: 0.1-0
-Date: 2008-07-16
-Author: Zhi Ouyang <zo2@stat.duke.edu>, Merlise Clyde
-        <clyde@stat.duke.edu>, Robert Wolpert <wolpert@stat.duke.edu>
-Maintainer: Zhi Ouyang <zo2@stat.duke.edu>
-Description: Impelementation of BARK: Bayesian Additive Regression
-        Kernels with Feature Selection, Zhi Ouyang (2008), Ph.D.
-        thesis, chapter 3.
-License: GPL (>= 2)
-URL: http://www.r-project.org,
-        http://www.stat.duke.edu/~zo2/research.html
-LazyLoad: yes
-Packaged: Wed Jul 16 11:46:34 2008; zo2
+Title: Bayesian Additive Regression Kernels
+Version: 1.0.1
+Date: 2023-03-08
+Authors@R: c(person("Merlise", "Clyde", email="clyde@stat.duke.edu",
+	   		            role=c("aut","cre", "ths"),
+	   		            comment=c("ORCID=0000-0002-3595-1872")
+	   		       ),
+	   		      person("Zhi", "Ouyang", email="zhi.ouyang@gmail.com", 
+	   		              role=c("aut")),
+	   		      person("Robert", "Wolpert", email="wolpert@stat.duke.edu", 
+	   		              role=c("ctb", "ths"))	
+	   		    )   		       
+Description: Bayesian Additive Regression Kernels (BARK) provides
+	an implementation for non-parametric function estimation using Levy
+	Random Field priors for functions that may be represented as a
+	sum of additive multivariate kernels.  Kernels are located at
+	every data point as in Support Vector Machines, however, coefficients 
+	may be heavily shrunk to zero under the Cauchy process prior, or even, 
+	set to zero.  The number of active features is controlled by priors on
+	precision parameters within the kernels, permitting feature selection. For 
+	more details see Ouyang, Z (2008) "Bayesian Additive Regression Kernels",
+	Duke University. PhD dissertation, Chapter 3.
+License: GPL (>= 3)
+URL: https://www.R-project.org, https://github.com/merliseclyde/bark
+BugReports: https://github.com/merliseclyde/bark/issues
+Suggests: BART, e1071, rmarkdown, knitr, roxygen2, testthat, covr
 Repository: CRAN
-Date/Publication: 2008-07-16 18:42:10
+NeedsCompilation: yes
+ByteCompile: yes
+Encoding: UTF-8
+RoxygenNote: 7.2.3
+Language: en-US
+VignetteBuilder: knitr
+Packaged: 2023-03-09 03:58:01 UTC; clyde
+Author: Merlise Clyde [aut, cre, ths] (ORCID=0000-0002-3595-1872),
+  Zhi Ouyang [aut],
+  Robert Wolpert [ctb, ths]
+Maintainer: Merlise Clyde <clyde@stat.duke.edu>
+Date/Publication: 2023-03-09 09:40:09 UTC

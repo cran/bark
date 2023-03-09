@@ -3,8 +3,7 @@
 # https://github.com/merliseclyde/bark/blob/master/LICENSE.md
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-#
-#' @title Nonparametric Regression using Bayesian Additive Regression Kernels
+#' @title NonParametric Regression using Bayesian Additive Regression Kernels
 #' @description BARK is a Bayesian \emph{sum-of-kernels} model.\cr
 #' For numeric response \eqn{y}, we have
 #' \eqn{y = f(x) + \epsilon}{y = f(x) + e},
@@ -26,23 +25,22 @@
 #' either soft shrinkage or  \emph{se}, \emph{sd}, enabling hard shrinkage for the scale
 #' parameters.
 #'
-#' @param formula model formula for the model with all predictors,
-#' Y ~ X.  The X variables will be centered and scaled as part of model fitting.
-#' @param data a data frame.  Factors will be converted to numerical vectors based on
-#' the using `model.matrix`.
-#' @param subset an optional vector specifying a subset of observations to be
-#' used in the fitting process.
-#' @param na.action a function which indicates what should happen when the data
-#' contain NAs. The default is "na.omit".
-#' @param testdata Dataframe with test data for out of sample prediction.\cr
-#' Should have same structure as data.
-#' @param selection Logical variable indicating whether variable 
-#' dependent kernel parameters \eqn{\lambda} may be set to zero in the MCMC; 
-#' default is TRUE. \cr
-#' @param common_lambdas Logical variable indicating whether  
-#' kernel parameters \eqn{\lambda} should be predictor specific or common across
-#' predictors;  default is TRUE.   Note if  \emph{common_lambdas = TRUE} and 
-#' \emph{selection = TRUE} this applies just to the non-zero \eqn{lambda_j}. \cr
+#' @param x.train  Explanatory variables for training (in sample) data.\cr
+#' Must be a matrix of doubles,
+#' with (as usual) rows corresponding to observations
+#' and columns to variables.
+#' @param y.train Dependent variable for training (in sample) data.\cr
+#' If y is numeric a continuous response model is fit (normal errors).\cr
+#' If y is a logical (or just has values 0 and 1),
+#' then a binary response model with a probit link is fit.
+#' @param x.test Explanatory variables for test (out of sample) data.\cr
+#' Should have same structure as x.train.
+#' @param type BARK type, \emph{e}, \emph{d}, \emph{se}, or \emph{sd}, default
+#' choice is \emph{se}.\cr
+#' \emph{e}: BARK with equal weights.\cr
+#' \emph{d}: BARK with different weights.\cr
+#' \emph{se}: BARK with selection and equal weights.\cr
+#' \emph{sd}: BARK with selection and different weights.\cr
 #' @param classification TRUE/FALSE logical variable,
 #' indicating a classification or regression problem.
 #' @param keepevery  Every keepevery draw is kept to be returned to the user
@@ -52,7 +50,6 @@
 #' nkeep*keepevery iterations after the burn in.
 #' @param printevery As the MCMC runs, a message is printed every printevery draws.
 #' @param keeptrain  Logical, whether to keep results for training samples.
-#' @param verbose Logical, whether to print out messages
 #' @param fixed  A list of fixed hyperparameters, using the default values if not
 #' specified.\cr
 #' alpha = 1: stable index, must be 1 currently.\cr
@@ -75,8 +72,7 @@
 #' @param theta  A list of the starting values for the parameter theta,
 #' use defaults if nothing is given.
 #'
-#' @return \code{bark} returns an object of class `bark` with a list, including:
-#'  \item{call}{the matched call}
+#' @return \code{bark} returns a list, including:
 #'  \item{fixed}{Fixed hyperparameters}
 #'  \item{tune}{Tuning parameters used}
 #'  \item{theta.last}{The last set of parameters from the posterior draw}
@@ -105,14 +101,14 @@
 #'  random variable.\cr
 #'  Burn-in is dropped}
 #' \item{yhat.test}{Same as yhat.train but now the x's
-#' are the rows of the test data;  NULL if testdata are not provided}
+#' are the rows of the test data}
 #' \item{yhat.train.mean}{train data fits = row mean of yhat.train}
 #' \item{yhat.test.mean}{test data fits = row mean of yhat.test}
 #'
 #' @details BARK is implemented using a Bayesian MCMC method.
 #' At each MCMC interaction, we produce a draw from the joint posterior
 #' distribution, i.e. a full configuration of regression coefficients,
-#' kernel locations and kernel parameters.
+#' kernel locations and kernel parameters etc.
 #'
 #' Thus, unlike a lot of other modelling methods in R,
 #' we do not produce a single model object
@@ -126,107 +122,73 @@
 #' @references Ouyang, Zhi (2008) Bayesian Additive Regression Kernels.
 #' Duke University. PhD dissertation, page 58.
 #' @examples
-#' ##Simulated regression example
-#' # Friedman 2 data set, 200 noisy training, 1000 noise free testing
-#' # Out of sample MSE in SVM (default RBF): 6500 (sd. 1600)
-#' # Out of sample MSE in BART (default):    5300 (sd. 1000)
-#' traindata <- data.frame(sim_Friedman2(200, sd=125))
-#' testdata <- data.frame(sim_Friedman2(1000, sd=0))
-#' # example with a very small number of iterations to illustrate usage
-#' fit.bark.d <- bark(y ~ ., data=traindata, testdata= testdata,
-#'                    nburn=10, nkeep=10, keepevery=10,
-#'                    classification=FALSE, 
-#'                    common_lambdas = FALSE,
-#'                    selection = FALSE)
+#' # Simulate regression example
+#' #  Friedman 2 data set, 200 noisy training, 1000 noise free testing
+#' #  Out of sample MSE in SVM (default RBF): 6500 (sd. 1600)
+#' #  Out of sample MSE in BART (default):    5300 (sd. 1000)
+#' traindata <- sim_Friedman2(200, sd=125)
+#' testdata <- sim_Friedman2(1000, sd=0)
+#' # example with a very small number of iterations to illustrate the method
+#' fit.bark.d <- bark_mat(traindata$x, traindata$y, testdata$x,
+#'                   nburn=10, nkeep=10, keepevery=10,
+#'                   classification=FALSE, type="d")
 #' boxplot(data.frame(fit.bark.d$theta.lambda))
 #' mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 
 #' \donttest{
-#'  ##Simulate classification example
-#'  # Circle 5 with 2 signals and three noisy dimensions
-#'  # Out of sample erorr rate in SVM (default RBF): 0.110 (sd. 0.02)
-#'  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
+#'  # Simulate classification example
+#'  #  Circle 5 with 2 signals and three noisy dimensions
+#'  #  Out of sample erorr rate in SVM (default RBF): 0.110 (sd. 0.02)
+#'  #  Out of sample error rate in BART (default):    0.065 (sd. 0.02)
 #'  traindata <- sim_circle(200, dim=5)
 #'  testdata <- sim_circle(1000, dim=5)
-#'  fit.bark.se <- bark(y ~ ., 
-#'                      data=data.frame(traindata), 
-#'                      testdata= data.frame(testdata), 
-#'                      classification=TRUE,
-#'                      nburn=100, nkeep=200, )
-#'  boxplot(as.data.frame(fit.bark.se$theta.lambda))
+#'  fit.bark.se <- bark_mat(traindata$x, traindata$y, testdata$x, classification=TRUE, type="se")
+#'  boxplot(data.frame(fit.bark.se$theta.lambda))
 #'  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 #'}
-#' @family bark functions
-#' @export
-bark <- function(formula, data, subset, na.action = na.omit, 
-                     testdata = NULL,
-                     selection = TRUE,
-                     common_lambdas = TRUE,   
-                     classification = FALSE,
-                     keepevery = 100,
-                     nburn = 100,
-                     nkeep = 100,
-                     printevery = 1000,
-                     keeptrain = FALSE,
-                     verbose = FALSE,
-                     fixed = list(),
-                     tune = list(lstep=0.5, frequL=.2,
-                                 dpow=1, upow=0, varphistep=.5, phistep=1),
-                     theta = list())
-{
+#' @family bark deprecated functions
+#' @keywords internal
+#' @name  bark-deprecated
+NULL
 
-  # create design matrix  
-  
-  
-  call <- match.call()
-  mfall <- match.call(expand.dots = FALSE)
-  mf <- match(
-    c(
-      "formula", "data", "subset", "na.action"
-    ),
-    names(mfall),
-    0L
-  )
-  m <- mfall[c(1L, mf)]
-  if (!inherits(formula, "formula"))
-    stop("method is only for formula objects")
-  if (!inherits(eval.parent(m$data), "data.frame"))
-    stop("method is only for dataframes")
-  m$... <- NULL
-  m[[1L]] <- quote(stats::model.frame)
-  m$na.action <- na.action
-  m <- eval(m, parent.frame())
-  Terms <- attr(m, "terms")
-  attr(Terms, "intercept") <- 0
-  x.train <- model.matrix(Terms, m)
-  y.train <- model.extract(m, "response")
-  attr(x.train, "na.action") <- attr(y.train, "na.action") <- attr(m, "na.action")
-  
+#' @rdname bark-package-deprecated
+#' @section \code{bark_mat}:  Old version with matrix inputs used for testing; 
+#' @export
+bark_mat <- function(x.train,
+                 y.train,
+                 x.test = matrix(0, 0, 0),
+                 type = "se",
+                 classification = FALSE,
+                 keepevery = 100,
+                 nburn = 100,
+                 nkeep = 100,
+                 printevery = 1000,
+                 keeptrain = FALSE,
+                 fixed = list(),
+                 tune = list(lstep=0.5, frequL=.2,
+                   dpow=1, upow=0, varphistep=.5, phistep=1),
+                 theta = list()
+                 ){
+  if ((!is.matrix(x.train)) || (typeof(x.train) != "double"))
+    stop("argument x.train must be a double matrix")
+  if ((!is.matrix(x.test)) || (typeof(x.test) != "double"))
+    stop("argument x.test must be a double matrix")
+  if ((!is.vector(y.train)) || !(typeof(y.train) %in% c("double", "integer", "logical")))
+      stop("argument y.train must be a double/integer/logical vector")
+  if (nrow(x.train) != length(y.train))
+    stop("number of rows in x.train must equal length of y.train")
+  if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
+    stop("input x.test must have the same number of columns as x.train")
   if (!is.logical(classification))
-    stop("argument classification should be TRUE or FALSE")
+    stop("argument classification is not logical")
+  if (!(type %in% c("se", "e", "d", "sd")))
+    stop("type is not recognized, should be 'e', 'se', 'd', or 'sd'")
   if (classification)
     problem <- "classification problem"
   else
     problem <- "regression problem"
+  print(paste("Starting BARK-", type, " for this ", problem, sep=""))
 
-  
-  # specifiy type of model for lambda's
-  if (common_lambdas) {
-    type = "e"
-    prior = "equal lambdas"}
-  else {
-    type = "d"
-    prior = "different lambdas"
-  }
-  if (selection)  {
-    type= paste0("s", type)
-    prior = paste(prior, "with selection")
-  }
-  
-  if (verbose)  print(paste("Starting BARK with", type, " for this ", 
-                            problem, sep=""))
-  
-  
   # initializing fixed
   if (is.null(fixed$alpha))
     fixed$alpha <- 1
@@ -247,43 +209,32 @@ bark <- function(formula, data, subset, na.action = na.omit,
   fixed$n <- dim(x.train)[1];
   fixed$p <- dim(x.train)[2];
   fixed$meanJ <- getmeanJ(fixed$alpha, fixed$eps, fixed$gam);
-  
+
   # centering and scaling
- 
-    x.train = scale(x.train);
-    x.train.mean <- attr(x.train, "scaled:center");
-    x.train.sd <- attr(x.train, "scaled:scale");
   
-  # extract x.test
-    if (!is.null(testdata)) {
-      if (!is.data.frame(testdata)) {
-        stop("Test data should be povided as a data.frame") }
-      Terms <- delete.response(Terms)
-      mtest <- model.frame(Terms, testdata, 
-                           na.action=na.action)
-      x.test = model.matrix(Terms, mtest)
-      x.test = scale(x.test, center=x.train.mean, scale = x.train.sd);
-    }
-  else 
-    x.test = matrix(NA, nrow=0,ncol=0)
+  x.train = scale(x.train);
+  x.train.mean <- attr(x.train, "scaled:center");
+  x.train.sd <- attr(x.train, "scaled:scale");
   
-  # if x.test is missing variables then an error is thrown earlier when 
-  # creating the matrix and error message is produced (in test-bark.R)
-  # start nocov
-  #. if ((nrow(x.test) > 0) && (ncol(x.test) != ncol(x.train)))
-  #     stop("input x.test must have the same number of columns as x.train")
-  # end nocov
-  
+  if(dim(x.test)[1] != 0){ 
+    x.test = scale(x.test, center=x.train.mean, scale = x.train.sd);}
+#  x.train.mean <- apply(x.train, 2, mean);
+#  x.train.sd <- apply(x.train, 2, sd);
+#  for(i in 1:fixed$p){
+#    x.train[,i] <- (x.train[,i]-x.train.mean[i])/x.train.sd[i];
+#    if(dim(x.test)[1] != 0){
+#      x.test[,i] <- (x.test[,i]-x.train.mean[i])/x.train.sd[i];
+## }
   if(fixed$p == 1){
     x.train <- matrix(x.train, ncol=1);
-    x.test <-  matrix(x.test, ncol=1);
+    x.test <- matrix(x.test, ncol=1);
   }
   if(!classification){
     y.train.mean <- mean(y.train);
     y.train.sd <- sd(y.train);
     y.train <- (y.train - y.train.mean)/y.train.sd;
   }
-  
+
   # initializing theta
   if(is.null(theta$nvec)){
     totalJ <- fixed$meanJ;
@@ -301,7 +252,7 @@ bark <- function(formula, data, subset, na.action = na.omit,
     theta$phi <- 1;
   }
   if(is.null(theta$lamzerop)){
-    if (type == "d" | type == "e"){ # no selection
+    if (type == "d" | type == "e"){
       theta$lamzerop <- 1;
     } else {
       theta$lamzerop <- .5;
@@ -315,22 +266,19 @@ bark <- function(formula, data, subset, na.action = na.omit,
       theta <- updatez(y.train, x.train, theta, classification);
     }
   }
-  
+
   # burning the markov chain
   fullXX <- NULL;
   for(i in 1:(keepevery*nburn)){
     cur <- rjmcmcone(y.train, x.train, theta, fixed, tune, classification, type, fullXX);
     theta <- cur$theta;
     fullXX <- cur$fullXX;
-    if (verbose) {
-      if(i %% printevery==0){
-        print(paste("burning iteration ", i, ", J=", sum(theta$nvec),
-                    ", max(nj)=", max(theta$nvec), sep=""));
-      }
+    if(i %% printevery==0){
+      print(paste("burning iteration ", i, ", J=", sum(theta$nvec),
+                  ", max(nj)=", max(theta$nvec), sep=""));
     }
   }
-  
-  
+
   # initializing the "saved" results
   if(keeptrain == TRUE){
     yhat.train <- matrix(NA, nrow=dim(x.train)[1], nkeep);
@@ -353,18 +301,16 @@ bark <- function(formula, data, subset, na.action = na.omit,
   colnames(theta.beta) <- paste("b", 0:fixed$n, sep="");
   colnames(theta.lambda) <- paste("l", 1:fixed$p, sep="");
   colnames(theta.phi) <- "phi";
-  
-  
+
   # running the Markov chain after burning
   for(i in 1:(keepevery*nkeep)){
     cur <- rjmcmcone(y.train, x.train, theta, fixed, tune, classification, type, fullXX);
     theta <- cur$theta;
     fullXX <- cur$fullXX;
-    if (verbose) {
-      if(i %% printevery==0){
-       print(paste("posterior mcmc iteration ", i, ", J=", sum(theta$nvec),
-                   ", max(nj)=", max(theta$nvec), sep=""));
-    }}
+    if(i %% printevery==0){
+      print(paste("posterior mcmc iteration ", i, ", J=", sum(theta$nvec),
+                  ", max(nj)=", max(theta$nvec), sep=""));
+    }
     if(i %% keepevery==0){
       theta.nvec[i/keepevery, ] <- theta$nvec;
       theta.varphi[i/keepevery, ] <- theta$varphi;
@@ -376,15 +322,15 @@ bark <- function(formula, data, subset, na.action = na.omit,
       theta.beta[i/keepevery, ] <- theta$beta;
       if(keeptrain == TRUE){
         yhat.train[, i/keepevery] <- getdesign(x.train, x.train, theta) %*%
-          theta$beta[theta$nvec>0];
+                                     theta$beta[theta$nvec>0];
       }
       if(dim(x.test)[1] != 0){
         yhat.test[, i/keepevery] <- getdesign(x.test, x.train, theta) %*%
-          theta$beta[theta$nvec>0];
+                                    theta$beta[theta$nvec>0];
       }
     }
   }
-  
+
   # summarizing the result
   barkreturn <- list(fixed = fixed,
                      tune = tune,
@@ -405,7 +351,6 @@ bark <- function(formula, data, subset, na.action = na.omit,
     barkreturn$yhat.train <- yhat.train;
     barkreturn$yhat.train.mean <- yhat.train.mean;
   }
-  
   if(dim(x.test)[1] != 0){
     #if(classification){
     #  yhat.test <- pnorm(yhat.test);
@@ -417,6 +362,5 @@ bark <- function(formula, data, subset, na.action = na.omit,
     barkreturn$yhat.test <- yhat.test;
     barkreturn$yhat.test.mean <- yhat.test.mean;
   }
-  class(barkreturn) <- c("bark")
   return(barkreturn);
 }

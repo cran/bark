@@ -1,3 +1,8 @@
+# Copyright (c) 2023 Merlise Clyde and Zhi Ouyang. All rights reserved
+# See full license at
+# https://github.com/merliseclyde/bark/blob/master/LICENSE.md
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
 ##birth()
 # birth step in RJ-MCMC
 #  - keep (L, phi/z) fixed, only update (J, ci, varphi)
