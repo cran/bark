@@ -1,16 +1,16 @@
-# bark 1.0.0. Comments to CRAN
+# bark 1.0.1 Comments to CRAN
 
-Submission of archived package to fix running times
-of examples and bring up to current standards
+Re-submission of package that had been archived in 2015 due to running times
+of examples not complying with CRAN policy
 
-Updates
-  - added unit tests and code coverage badge that links to reports 
-    (99% code coverage)
-  - added GitHub Actions for CI on multiple platforms
-  - added registration of native routines in foreign function calls and disabled symbol search in `src/bark-init.c` and updated the `NAMESPACE` using Roxygen2
-  - changed function arguments to use a model formula
-  - switched to .Call from .C
-  
+Comments 
+
+- fixed running time of examples so that all are less than 5 seconds on test platforms (see below) by reducing the number of iterations for illustration.  Additional longer examples are in \donttest now.
+- added reference to DESCRIPTION file
+- added \value to the function  man page of `bark-package-deprecated` that is used to list all deprecated functions from the package (returns nothing)
+- long running examples are enclosed in \donttest rather than \dontrun per reviewers request. Deprecated functions use \dontrun to avoid warnings.
+- added all authors, contributors and copyright holders in the Authors@R field with the appropriate roles.  
+
 ## Test environments
 - local R installation macosx, R 4.2.2
 - ubuntu  (r-release, r-devel, and old-release)

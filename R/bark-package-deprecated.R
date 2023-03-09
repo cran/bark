@@ -13,6 +13,6 @@
 #' @family bark deprecated functions
 #' @family bark functions
 #' @name bark-package-deprecated
-#'
+#' @return List of deprecated functions
 #' @keywords internal
 NULL

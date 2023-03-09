@@ -75,7 +75,7 @@
 #' @param theta  A list of the starting values for the parameter theta,
 #' use defaults if nothing is given.
 #'
-#' @return \code{bark} returns a list, including:
+#' @return \code{bark} returns an object of class `bark` with a list, including:
 #'  \item{call}{the matched call}
 #'  \item{fixed}{Fixed hyperparameters}
 #'  \item{tune}{Tuning parameters used}
@@ -105,14 +105,14 @@
 #'  random variable.\cr
 #'  Burn-in is dropped}
 #' \item{yhat.test}{Same as yhat.train but now the x's
-#' are the rows of the test data}
+#' are the rows of the test data;  NULL if testdata are not provided}
 #' \item{yhat.train.mean}{train data fits = row mean of yhat.train}
 #' \item{yhat.test.mean}{test data fits = row mean of yhat.test}
 #'
 #' @details BARK is implemented using a Bayesian MCMC method.
 #' At each MCMC interaction, we produce a draw from the joint posterior
 #' distribution, i.e. a full configuration of regression coefficients,
-#' kernel locations and kernel parameters etc.
+#' kernel locations and kernel parameters.
 #'
 #' Thus, unlike a lot of other modelling methods in R,
 #' we do not produce a single model object
@@ -141,13 +141,13 @@
 #' boxplot(data.frame(fit.bark.d$theta.lambda))
 #' mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 
-#' \dontrun{
+#' \donttest{
 #'  ##Simulate classification example
 #'  # Circle 5 with 2 signals and three noisy dimensions
 #'  # Out of sample erorr rate in SVM (default RBF): 0.110 (sd. 0.02)
 #'  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
-#'  traindata <- sim_Circle(200, dim=5)
-#'  testdata <- sim_Circle(1000, dim=5)
+#'  traindata <- sim_circle(200, dim=5)
+#'  testdata <- sim_circle(1000, dim=5)
 #'  fit.bark.se <- bark(y ~ ., 
 #'                      data=data.frame(traindata), 
 #'                      testdata= data.frame(testdata), 

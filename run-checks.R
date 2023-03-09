@@ -18,4 +18,7 @@ url('https://mac.r-project.org/macbuilder/submit.html')
 
 # to submit to CRAN
 
+devtools::spell_check()
+devtools::document()
+devtools::release()
 devtools::submit_cran()

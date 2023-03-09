@@ -28,20 +28,30 @@
 
 #' Feature selection can be achieved through the inference
 #' on the scale parameters in the Gaussian kernels.
-#' BARK accepts four different types of prior distributions,
-#' \code{e}, \code{d}, \code{se}, \code{sd}, enabling
-#' either soft shrinkage or hard shrinkage for the scale
-#' parameters.
+#' BARK accepts four different types of prior distributions through setting
+#' values for \code{selection} (TRUE or FALSE), which allows scale parameters
+#' for some variables to be set to zero, removing the variables from the
+#' kernels \code{selection = TRUE}; this enables either soft shrinkage or hard 
+#' shrinkage for the scale
+#' parameters. The input \code{common_lambdas} (TRUE or FALSE) specifies whether
+#' a common scale parameter should be used for all predictors (TRUE) or
+#' if FALSE allows the scale parameters to differ across all variabless
+#' in the kernel.
+#' 
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'  # Simulate regression example
 #'  # Friedman 2 data set, 200 noisy training, 1000 noise free testing
 #'  # Out of sample MSE in SVM (default RBF): 6500 (sd. 1600)
 #'  # Out of sample MSE in BART (default):    5300 (sd. 1000)
-#'  traindata <- sim.Friedman2(200, sd=125)
-#'  testdata <- sim.Friedman2(1000, sd=0)
-#'  fit.bark.d <- bark(traindata$x, traindata$y, testdata$x, classification=FALSE, type="d")
+#'  traindata <- sim_Friedman2(200, sd=125)
+#'  testdata <- sim_Friedman2(1000, sd=0)
+#'  fit.bark.d <- bark(y ~ ., data = data.frame(traindata),
+#'                     testdata = data.frame(testdata), 
+#'                     classification = FALSE,
+#'                     selection = FALSE,
+#'                     common_lambdas = TRUE)
 #'  boxplot(as.data.frame(fit.bark.d$theta.lambda))
 #'  mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
 
@@ -49,9 +59,14 @@
 #'  # Circle 5 with 2 signals and three noisy dimensions
 #'  # Out of sample erorr rate in SVM (default RBF): 0.110 (sd. 0.02)
 #'  # Out of sample error rate in BART (default):    0.065 (sd. 0.02)
-#'  traindata <- sim.Circle(200, dim=5)
-#'  testdata <- sim.Circle(1000, dim=5)
-#'  fit.bark.se <- bark(traindata$x, traindata$y, testdata$x, classification=TRUE, type="se")
+#'  traindata <- sim_circle(200, dim=5)
+#'  testdata <- sim_circle(1000, dim=5)
+#'  fit.bark.se <- bark(y ~ ., data= data.frame(traindata), 
+#'                      testdata= data.frame(testdata),
+#'                      classification=TRUE, 
+#'                      selection=TRUE,
+#'                      common_lambdas = FALSE)
+#'                    
 #'  boxplot(as.data.frame(fit.bark.se$theta.lambda))
 #'  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)
 #' }

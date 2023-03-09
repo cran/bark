@@ -146,13 +146,13 @@ fit.bark.d <- bark_mat(traindata$x, traindata$y, testdata$x,
                   classification=FALSE, type="d")
 boxplot(data.frame(fit.bark.d$theta.lambda))
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-\dontrun{
+\donttest{
  # Simulate classification example
  #  Circle 5 with 2 signals and three noisy dimensions
  #  Out of sample erorr rate in SVM (default RBF): 0.110 (sd. 0.02)
  #  Out of sample error rate in BART (default):    0.065 (sd. 0.02)
- traindata <- sim_Circle(200, dim=5)
- testdata <- sim_Circle(1000, dim=5)
+ traindata <- sim_circle(200, dim=5)
+ testdata <- sim_circle(1000, dim=5)
  fit.bark.se <- bark_mat(traindata$x, traindata$y, testdata$x, classification=TRUE, type="se")
  boxplot(data.frame(fit.bark.se$theta.lambda))
  mean((fit.bark.se$yhat.test.mean>0)!=testdata$y)

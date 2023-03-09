@@ -36,6 +36,9 @@ sim.Friedman3(n, sd = 0.1)
 
 sim.Circle(n, dim = 5)
 }
+\value{
+List of deprecated functions
+}
 \description{
 The functions listed below are deprecated and will be defunct in
   the near future. When possible, alternative functions with similar
@@ -43,7 +46,7 @@ The functions listed below are deprecated and will be defunct in
   available at \code{help("<function>-deprecated")}.
 }
 \section{\code{bark_mat}}{
-  Old version with matrix inputs used for testing
+  Old version with matrix inputs used for testing;
 }
 
 \section{\code{sim.Friedman1}}{
