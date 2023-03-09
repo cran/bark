@@ -1,4 +1,4 @@
-# bark 1.0.0
+# bark 1.0.1
 
 ## Major Changes
 
