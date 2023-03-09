@@ -1,4 +1,14 @@
+# bark 1.0.2
+
+
 # bark 1.0.1
+
+## minor changes
+
+* update longer running examples to use `\donttest` rather than `\dontrun`
+* add reference to DESCRIPTION
+
+# bark 1.0.0
 
 ## Major Changes
 
