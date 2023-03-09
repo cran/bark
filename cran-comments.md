@@ -3,13 +3,18 @@
 Re-submission of package that had been archived in 2015 due to running times
 of examples not complying with CRAN policy
 
-Comments 
+Comments for this submission:
 
 - fixed running time of examples so that all are less than 5 seconds on test platforms (see below) by reducing the number of iterations for illustration.  Additional longer examples are in \donttest now.
 - added reference to DESCRIPTION file
 - added \value to the function  man page of `bark-package-deprecated` that is used to list all deprecated functions from the package (returns nothing)
 - long running examples are enclosed in \donttest rather than \dontrun per reviewers request. Deprecated functions use \dontrun to avoid warnings.
-- added all authors, contributors and copyright holders in the Authors@R field with the appropriate roles.  
+- added all authors, contributors and copyright holders in the Authors@R field with the appropriate roles. 
+
+Comments on Previous Submission:
+- added unit tests so that code coverage through testthat now execute 99% of code (6 lines not covered reported by CodeCov)
+- added registration of native routines in foreign function calls, disabled symbol search in `src/bark-init.c` and  updated the `NAMESPACE` using Roxygen2
+
 
 ## Test environments
 - local R installation macosx, R 4.2.2
