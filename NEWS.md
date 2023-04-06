@@ -1,5 +1,7 @@
 # bark 1.0.2
 
+* archived on 3/31 due to unit test failure on M1 Mac with R-devel 
+(false-positive). No changes.
 
 # bark 1.0.1
 
