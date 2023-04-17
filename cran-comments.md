@@ -1,10 +1,13 @@
-# bark 1.0.3 Comments to CRAN
+# bark 1.0.4 Comments to CRAN
 
-Package archived on 3/31 due to CRAN check failiure on M1 Mac (R-devel) due
-to unit test.   Checks using mac-builder-M1mac with R-release and R-devel 
-currently do not any errors in the unit test that failed (no errors on any of
-the platforms) so this may have been a false -positive with R-devel on the
-M1 Mac?
+Package archived on 3/31 due to CRAN check failiure on MKL (R-devel) due
+to unit test.  
+
+Attempts to replicate the failed test in a docker container for
+Debian with gcc-12, MKL latest (2023), and r-devel have been unsuccesful 
+(still passes the test).   Skipping test on cran as it is for 
+code that will be deprected shortly and was there for internal development
+(and passes on all other platforms with CI for r-devel, r-release).
 
 Possible misspelled words in the DESCRIPTION are correct surnames
 
@@ -17,6 +20,7 @@ Possible misspelled words in the DESCRIPTION are correct surnames
 - R-hub ubuntu-gcc-release (r-release)
 - R-hub fedora-clang-devel (r-devel)
 - R-hub linux-x86_64-rocker-gcc-san (r-devel)
+- docker debian, gcc-12, intel-MKL-latest
 
 
 ## R CMD check results

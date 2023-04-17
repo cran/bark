@@ -1,7 +1,16 @@
-# bark 1.0.2
+# bark 1.0.4
 
-* archived on 3/31 due to unit test failure on M1 Mac with R-devel 
-(false-positive). No changes.
+* archived on 3/31 due to unit test failure on MKL with R-devel gcc
+ skip this unit test on CRAN as test is for code that will be deprecated
+ shortly.
+
+# bark 1.0.3
+
+* failed MKL checks
+
+# bark 1.0.3
+
+* failed MKL checks
 
 # bark 1.0.1
 
