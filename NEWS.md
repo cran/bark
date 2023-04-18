@@ -1,3 +1,24 @@
+# bark 1.0.4
+
+* archived on 3/31 due to unit test failure on MKL with R-devel gcc
+ skip this unit test on CRAN as test is for code that will be deprecated
+ shortly.
+
+# bark 1.0.3
+
+* failed MKL checks
+
+# bark 1.0.3
+
+* failed MKL checks
+
+# bark 1.0.1
+
+## minor changes
+
+* update longer running examples to use `\donttest` rather than `\dontrun`
+* add reference to DESCRIPTION
+
 # bark 1.0.0
 
 ## Major Changes

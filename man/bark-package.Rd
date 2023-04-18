@@ -32,7 +32,7 @@ kernels \code{selection = TRUE}; this enables either soft shrinkage or hard
 shrinkage for the scale
 parameters. The input \code{common_lambdas} (TRUE or FALSE) specifies whether
 a common scale parameter should be used for all predictors (TRUE) or
-if FALSE allows the scale parameters to differ across all variabless
+if FALSE allows the scale parameters to differ across all variables
 in the kernel.
 }
 \examples{
