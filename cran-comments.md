@@ -1,4 +1,4 @@
-# bark 1.0.4 Comments to CRAN
+# bark 1.0.5 Comments to CRAN
 
 Package archived on 3/31 due to CRAN check failiure on MKL (R-devel) due
 to unit test.  

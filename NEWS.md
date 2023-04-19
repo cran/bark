@@ -1,3 +1,5 @@
+# bark 1.0.5
+
 # bark 1.0.4
 
 * archived on 3/31 due to unit test failure on MKL with R-devel gcc
