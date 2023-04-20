@@ -19,3 +19,4 @@ run-checks.R
 ^CONTRIBUTING\.md$
 ^SECURITY\.md$
 ^CRAN-SUBMISSION$
+bark-profiling.R

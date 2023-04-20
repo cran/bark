@@ -22,14 +22,19 @@ updateL.d <- function(y,
 
   updind <- sample(fixed$p, 1);
   newtheta$L[updind] <- rlognorm(1, log(theta$L[updind]), tune$lstep);
-
-  logacc <- llike(y, X, newtheta, classification) -
-    llike(y, X, theta, classification) +
+  llik.old <- theta$llik.old;
+  llik.new <- llike(y, X, newtheta, classification) ;
+#  llik.old <- llike(y, X, theta, classification);
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.ld", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old +
     dgamma(newtheta$L[updind], la/p, lb, log=T) -
     dgamma(theta$L[updind], la/p, lb, log=T) -
     log(theta$L[updind]) + log(newtheta$L[updind]);
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accupdateL <- 1;
   }
   return(list(theta=theta, accupdateL=accupdateL));

@@ -32,13 +32,18 @@ death <- function(y,          # response varaible continuous/[0/1] depend on cla
   deathci <- sample(1:(n+1), 1, replace=T, prob=deathprobs);
   deathprob <- deathprobs[deathci]/sum(deathprobs);
   newtheta$nvec[deathci] <- newtheta$nvec[deathci] - 1;
-
-  logacc <- llike(y, X, newtheta, classification, fullXX) -
-    llike(y, X, theta, classification, fullXX) +
+  llik.old <- theta$llik.old;
+  llik.new <- llike(y, X, newtheta, classification, fullXX);
+#  llik.old <- llike(y, X, theta, classification, fullXX);
+#  if (theta$llik.old != llik.old) {
+#    stop(paste("problem in birth"));
+#  }
+  logacc <-  llik.new - llik.old +
     log(nvec[deathci]/meanJ) - log(deathprob) +
     log(pbd$pbJm1/pbd$pdJ);
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <-  llik.new;
     accdeath <- 1;
   }
   return(list(theta=theta, accdeath=accdeath));

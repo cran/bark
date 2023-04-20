@@ -74,11 +74,16 @@ fliponeL.sd <- function(y,
     # death, flip a non-zero element to zero
     newtheta$L[switchid] <- 0;
   }
-  
-  logacc <- llike(y, X, newtheta, classification) -
-    llike(y, X, theta, classification) + logppratio;
+  llik.new <- llike(y, X, newtheta, classification);
+  llik.old <- theta$llik.old;
+#  llik.old <- llike(y, X, theta, classification);
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.lsd", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old + logppratio;
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accfliponeL <- 1;
   }
 
@@ -118,13 +123,19 @@ updateoneL.sd <- function(y,
     newtheta$L[switchid] <- rlognorm(1,
                                      log(theta$L[switchid]),
                                      tune$lstep);
-    logacc <- llike(y, X, newtheta, classification) -
-      llike(y, X, theta, classification) +
+    llik.new <- llike(y, X, newtheta, classification);
+    llik.old <- theta$llik.old;
+#   llik.old <- llike(y, X, theta, classification) ;
+#    if (llik.old != theta$llik.old) {
+#      print(paste("update.lse", llik.old, theta$llik.old));
+#    }
+    logacc <- llik.new - llik.old +
         dgamma(newtheta$L[switchid], la/d, lb, log=T) -
           dgamma(theta$L[switchid], la/d, lb, log=T) -
     log(theta$L[switchid]) + log(newtheta$L[switchid]);
     if(exptoss > - logacc){
       theta <- newtheta;
+      theta$llik.old <- llik.new;
       accupdateoneL <- 1;
     }
   }

@@ -39,12 +39,18 @@ birth <- function(y,          # response varaible continuous/[0/1] depend on cla
 
   deathprobs <- newtheta$nvec*(newtheta$varphi^tune$dpow);
   deathprob <- deathprobs[newci]/sum(deathprobs);
-  logacc <- llike(y, X, newtheta, classification, fullXX) -
-    llike(y, X, theta, classification, fullXX) +
+  llik.old <- theta$llik.old;
+  llik.new <- llike(y, X, newtheta, classification, fullXX);
+# llik.old <- llike(y, X, theta, classification, fullXX);
+#  if (theta$llik.old != llik.old) {
+#    stop(paste("problem in birth"));
+#  }
+  logacc <- llik.new - llik.old + 
     log(meanJ/newtheta$nvec[newci]) + log(deathprob) +
     log(pbd$pdJp1/pbd$pbJ);
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old = llik.new;
     accbirth <- 1;
   }
   return(list(theta=theta, accbirth=accbirth));

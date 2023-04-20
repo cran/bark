@@ -31,5 +31,6 @@ updatez <- function(y,          # response varaible continuous/[0/1] depend on c
   z[z > 20] <- 20;
   z[z < -20] <- -20;
   theta$z <- z;
+  theta$llik.old <- llike(y, X, theta, classification, fullXX) ;
   return(theta);
 }
