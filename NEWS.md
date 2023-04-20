@@ -1,5 +1,10 @@
 # bark 1.0.5
 
+## Major Changes
+
+* improve computational efficiency by saving old log likelihood values
+rahter than recomputing; should improve compuational speed by close to a factor of 2
+
 # bark 1.0.4
 
 * archived on 3/31 due to unit test failure on MKL with R-devel gcc
