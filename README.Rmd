@@ -80,7 +80,7 @@ Over the next year the following enhancements are planned:
 
 * add S3 methods for `predict`, `summary`, `plot` 
 
-* add additional kernels
+* add additional kernels and LARK methods from AOS (2011) paper
 
 * better hyperparameter specification
 
