@@ -3,7 +3,7 @@ library(profvis)
 devtools::install()
 library(bark)
 
-profvis({
+profvis::profvis({
   set.seed(42)
   bark.new.lsd = bark(y ~ ., data=circle2, subset=train,
                      #                   testdata = as.matrix(circle2[-train, ]),
