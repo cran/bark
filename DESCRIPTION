@@ -2,7 +2,7 @@ Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
 Version: 1.0.5
-Date: 2023-04-19
+Date: 2023-04-21
 Authors@R: c(person("Merlise", "Clyde", email="clyde@stat.duke.edu",
 	   		            role=c("aut","cre", "ths"),
 	   		            comment=c("ORCID=0000-0002-3595-1872")
