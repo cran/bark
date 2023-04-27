@@ -5,6 +5,10 @@
 * improve computational efficiency by saving old log likelihood values
 rahter than recomputing; should improve compuational speed by close to a factor of 2
 
+## Bug Fixes
+
+* identified an error in the calculation of the covariance matrix for the coeffients in `R/llike.R` and updated code.  (result was close so not a large effect)
+
 # bark 1.0.4
 
 * archived on 3/31 due to unit test failure on MKL with R-devel gcc
