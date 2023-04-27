@@ -6,22 +6,16 @@
 
 // SPDX-License-Identifier: GPL-3.0-or-later
 // kernelCalculationCall.cpp
-// regression kernel calculations using c++
+// regression kernel calculations using C
 
-#include <iostream>
+
 #include <math.h>
 #include <R.h>
 #include <Rinternals.h>
 
-using namespace std;
 
-
-
-
-
-extern "C"{
-  // getDesignCpp: To calculate the design matrix in cpp code.
-  //  Diagonal kernels with maximum 1.
+  // getDesign: To calculate the design matrix in C code.
+  // Diagonal kernels with maximum 1.
 
   SEXP getDesign(SEXP RX,  	// n*d, data matrix vector
                  SEXP RC,  	// p*d, center matrix vector
@@ -37,6 +31,16 @@ extern "C"{
     int *isi, i, j, k;
     double *x, *l, *c, *z,  eitem, esum;;
 
+/*    
+      xdim = dim(X)
+      cdim = dim(center)
+      ldim = length(L)
+      idim = length(intercept)
+      
+      if (xdim[2] !=  ldim || xdim[2] != cdim[2] || cdim[1] != idim) {
+        stop("diminsions of inputs to createDesign due not conform")
+      }
+ */
     isi = INTEGER(Risi);
     x = REAL(RX);
     c = REAL(RC);
@@ -63,5 +67,5 @@ extern "C"{
     UNPROTECT(1);
     return(RZ);
   }
-}
+
 
