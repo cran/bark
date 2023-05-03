@@ -13,7 +13,7 @@ test_that("old bark", {
 # check main input argument types  
 # y is not a vector
 expect_error(bark_mat( y.train=data.frame(traindata), x.train=traindata$x,
-                    testdata= testdata$x,
+                    x.test = testdata$x,
                     nburn=10, nkeep=100, keepevery=10,
                     classification = FALSE, 
                     printevery=10^10))
@@ -27,7 +27,7 @@ expect_error(bark_mat(x.train=traindata, y.train = traindata$y,
 
 # testdata is a dataframe
  expect_error(bark_mat(x.train=traindata$x, y.train = traindata$y,
-                 testdata=testdata,
+                 x.test = testdata,
                  nburn=10, nkeep=100, keepevery=10,
                  classification = FALSE, 
                  printevery=10^10))    
@@ -50,7 +50,12 @@ expect_error(bark_mat(x.train=traindata, y.train = traindata$y,
                                       nburn=10, nkeep=100, keepevery=10,
                                       classification=5, type="e", 
                                       printevery=500))
-                             
+    
+   expect_error(bark_mat(traindata$x, traindata$y, as.character(testdata$x),
+                            nburn=10, nkeep=10, keepevery=10, 
+                            keeptrain=TRUE,
+                            classification=FALSE, type="sd", printevery=10^10))
+   
                              
    expect_no_error(bark_mat(traindata$x, traindata$y, testdata$x,
                          nburn=10, nkeep=10, keepevery=10, 

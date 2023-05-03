@@ -9,3 +9,4 @@ src/*.dll
 
 docs
 inst/doc
+tests/testthat/test_new_vs_old_code.R
