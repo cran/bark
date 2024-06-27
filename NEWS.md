@@ -1,7 +1,5 @@
 # bark 1.0.5
 
-# bark 1.0.5
-
 ## Major Changes
 
 * improve computational efficiency by saving old log likelihood values

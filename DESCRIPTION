@@ -28,6 +28,7 @@ Description: Bayesian Additive Regression Kernels (BARK) provides
 License: GPL (>= 3)
 URL: https://www.R-project.org, https://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
+Depends: R (>= 3.5.0)
 Suggests: 
     BART,
     e1071,
