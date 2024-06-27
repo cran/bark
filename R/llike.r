@@ -3,7 +3,7 @@
 # log likelihood calculation
 # marginalized beta in the conjugate normal-gamma setting
 # for binary model, likelihood conditional on hidden z values
-llike <- function(y, # continuous or 0/1 response
+llike_old <- function(y, # continuous or 0/1 response
                   X, # n*d covariate matrix
                   theta, # list(p, nvec, varphi, beta, L, phi)
                   classification, # TRUE/FALSE class/regression
@@ -19,6 +19,7 @@ llike <- function(y, # continuous or 0/1 response
     XX <- matrix(fullXX[, theta$nvec > 0], ncol = sum(theta$nvec > 0))
   }
   
+
   varphiovern <- theta$varphi[theta$nvec > 0] / theta$nvec[theta$nvec > 0]^2
   
   if (dim(XX)[2] == 1) {
@@ -29,6 +30,8 @@ llike <- function(y, # continuous or 0/1 response
     evv <- eigen(theta$phi*t(XX) %*% XX + diag(varphiovern), symmetric = TRUE)
     Sigma <- evv$vectors %*% diag(evv$values ^-1)  %*% t(evv$vectors)
   }
+  
+
   mu <- theta$phi * Sigma %*% (t(XX) %*% y)
   ll <- length(y) / 2 * log(theta$phi / 2 / pi) +
     sum(log(varphiovern)) / 2 -

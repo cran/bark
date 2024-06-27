@@ -1,9 +1,15 @@
 # bark 1.0.5
 
+# bark 1.0.5
+
 ## Major Changes
 
 * improve computational efficiency by saving old log likelihood values
-rahter than recomputing; should improve compuational speed by close to a factor of 2
+rather than recomputing; should improve compuational speed by close to a factor of 2
+
+* replace .C with .Call for computing the design matrix (resolves CRAN warning about noRemap)
+
+
 
 ## Bug Fixes
 

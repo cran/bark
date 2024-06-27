@@ -78,8 +78,8 @@ Other bark deprecated functions:
 \code{\link{sim.Friedman3-deprecated}}
 
 Other bark functions: 
-\code{\link{bark-package}},
 \code{\link{bark}()},
+\code{\link{bark-package}},
 \code{\link{sim_Friedman1}()},
 \code{\link{sim_Friedman2}()},
 \code{\link{sim_Friedman3}()},

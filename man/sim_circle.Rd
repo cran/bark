@@ -39,9 +39,9 @@ Other bark simulation functions:
 \code{\link{sim_Friedman3}()}
 
 Other bark functions: 
-\code{\link{bark-package-deprecated}},
-\code{\link{bark-package}},
 \code{\link{bark}()},
+\code{\link{bark-package}},
+\code{\link{bark-package-deprecated}},
 \code{\link{sim_Friedman1}()},
 \code{\link{sim_Friedman2}()},
 \code{\link{sim_Friedman3}()}

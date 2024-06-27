@@ -9,7 +9,7 @@
 #'  Gaussian regression
 #'  and classification for binary Probit models
 #'
-#' @docType package
+#' _PACKAGE
 #' @name bark-package
 #'
 #' @details BARK is a Bayesian \emph{sum-of-kernels} model or because of the

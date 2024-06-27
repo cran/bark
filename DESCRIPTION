@@ -2,7 +2,7 @@ Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
 Version: 1.0.5
-Date: 2023-04-27
+Date: 2024-06-27
 Authors@R: c(person("Merlise", "Clyde", email="clyde@stat.duke.edu",
 	   		            role=c("aut","cre", "ths"),
 	   		            comment=c("ORCID=0000-0002-3595-1872")
@@ -42,6 +42,6 @@ Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Language: en-US
 VignetteBuilder: knitr

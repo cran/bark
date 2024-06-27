@@ -7,19 +7,19 @@
 
 # Calculate  design matrix for kernels
 #
-createDesignCpp <- function(X, center, L, intercept, n,
-                            p, d) {
-  z <- .C(C_getDesignCpp,
-          as.double(X), # n*d, data matrix vector
-          as.double(center), # p'*d, center matrix vector
-          as.double(L), # d*1, kernel vector
-          as.integer(intercept), # p'*1, indicator of intercept
-          as.integer(n), # n, number of observations
-          as.integer(p), # p, number of kernels (model dimension)
-          as.integer(d), # d, observation dimension
-          z = double(n * p))$z # n*p' design matrix
-  z <- matrix(z, ncol = p)  # coerce to matrix
-}
+#createDesignCpp <- function(X, center, L, intercept, n,
+#                            p, d) {
+#  z <- .C(C_getDesignCpp,
+#          as.double(X), # n*d, data matrix vector
+#          as.double(center), # p'*d, center matrix vector
+#          as.double(L), # d*1, kernel vector
+#          as.integer(intercept), # p'*1, indicator of intercept
+#          as.integer(n), # n, number of observations
+#          as.integer(p), # p, number of kernels (model dimension)
+#          as.integer(d), # d, observation dimension
+#          z = double(n * p))$z # n*p' design matrix
+#  z <- matrix(z, ncol = p)  # coerce to matrix
+#}
 
 
 
