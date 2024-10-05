@@ -32,15 +32,21 @@ updatevarphi <- function(y,          # response varaible continuous/[0/1] depend
   probs[nvec == 0] <- 0;
   updind <- sample(1:(n+1), 1, replace=T, prob=probs);
   newtheta$varphi[updind] <- rlognorm(1, log(theta$varphi[updind]), tune$varphistep);
-
-  logacc <- llike(y, X, newtheta, classification, fullXX) -
-    llike(y, X, theta, classification, fullXX) +
+  
+  llik.old <- theta$llik.old ;
+  llik.new <- llike(y, X, newtheta, classification, fullXX);
+#  llik.old <- llike(y, X, theta, classification, fullXX);
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.varphi", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old +
     dgamma(newtheta$varphi[updind], alpha/2, alpha*eps^2/2, log=T) -
     dgamma(varphi[updind], alpha/2, alpha*eps^2/2, log=T) -
     log(varphi[updind]) + log(newtheta$varphi[updind]);
   
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old = llik.new;
     accupdatevarphi <- 1;
   }
   return(list(theta=theta, accupdatevarphi=accupdatevarphi));

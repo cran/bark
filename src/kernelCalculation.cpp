@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <math.h>
+#include "R.h"
 
 using namespace std;
 

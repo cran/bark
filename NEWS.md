@@ -1,3 +1,21 @@
+# bark 1.0.6
+
+## Major Changes
+
+* improve computational efficiency by saving old log likelihood values
+rather than recomputing; should improve computational speed by close to a factor of 2
+
+* replace .C with .Call for computing the design matrix (resolves CRAN warning about noRemap)
+
+## Bug Fixes
+
+* fixed issues identified on CRAN package check regarding noRemap (issue #9)
+
+
+## Bug Fixes
+
+* identified an error in the calculation of the covariance matrix for the coefficients in `R/llike.R` and updated code.  (result was close so not a large effect)
+
 # bark 1.0.4
 
 * archived on 3/31 due to unit test failure on MKL with R-devel gcc

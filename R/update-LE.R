@@ -24,14 +24,19 @@ updateL.e <- function(y,
   newtheta$L <- theta$L * movesca;
   newsca <- max(newtheta$L);
   oldsca <- max(theta$L);
-  
-  logacc <- llike(y, X, newtheta, classification) -
-    llike(y, X, theta, classification) +
+  llik.new <- llike(y, X, newtheta, classification);
+  llik.old <- theta$llik.old;  
+# llik.old <- llike(y, X, theta, classification); 
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.le", llik.old, theta$llik.old));
+#  }
+  logacc <-  llik.new - llik.old +
     dgamma(newsca, la, p*lb, log=T) -
     dgamma(oldsca, la, p*lb, log=T) -
     log(oldsca) + log(newsca);
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accupdateL <- 1;
   }
   return(list(theta=theta, accupdateL=accupdateL));

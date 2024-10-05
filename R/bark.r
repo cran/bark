@@ -199,7 +199,19 @@ bark <- function(formula, data, subset, na.action = na.omit,
   Terms <- attr(m, "terms")
   attr(Terms, "intercept") <- 0
   x.train <- model.matrix(Terms, m)
-  y.train <- model.extract(m, "response")
+  y.train <- model.extract(m, "response") 
+  if (is.character(y.train)) {
+    stop("the response variable should be a double for regression problems 
+         or a factor, integer or double for classification problems")
+  }
+  if (!is.double(y.train)) {
+      if (classification) {
+        y.train = as.double(y.train)
+        if (min(y.train) > 0) y.train = y.train - 1.0 
+      }
+      else stop("response should be a double for regression problems")
+  }
+  
   attr(x.train, "na.action") <- attr(y.train, "na.action") <- attr(m, "na.action")
   
   if (!is.logical(classification))
@@ -316,8 +328,12 @@ bark <- function(formula, data, subset, na.action = na.omit,
     }
   }
   
+  if (is.null(theta$llik.old)) {
+    theta$llik.old <- llike(y.train, x.train, theta, classification)
+  }
   # burning the markov chain
   fullXX <- NULL;
+  fullXX <- getfulldesign(x.train, x.train, theta)
   for(i in 1:(keepevery*nburn)){
     cur <- rjmcmcone(y.train, x.train, theta, fixed, tune, classification, type, fullXX);
     theta <- cur$theta;

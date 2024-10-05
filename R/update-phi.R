@@ -26,11 +26,16 @@ updatephi <- function(y,          # response varaible continuous/[0/1] depend on
   exptoss <- rexp(1);
 
   newtheta$phi <- rlognorm(1, log(theta$phi), tune$phistep);
-  
-  logacc <- llike(y, X, newtheta, classification, fullXX) -
-    llike(y, X, theta, classification, fullXX);
+  llik.old <- theta$llik.old;
+  llik.new <- llike(y, X, newtheta, classification, fullXX);
+#  llik.old <- llike(y, X, theta, classification, fullXX);
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.phi", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old;  # missing prior?
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accupdatephi <- 1;
   }
   return(list(theta=theta, accupdatediag=accupdatephi));

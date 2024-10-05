@@ -52,10 +52,16 @@ fliponeL.se <- function(y,
     }
     logppratio <- logppratio + log(lamzerop/(1-lamzerop));
   }
-  logacc <- llike(y, X, newtheta, classification) -
-    llike(y, X, theta, classification) + logppratio;
+  llik.new <- llike(y, X, newtheta, classification);
+  llik.old <- theta$llik.old;
+#  llik.old <-  llike(y, X, theta, classification);
+#  if (llik.old != theta$llik.old) {
+#     print(paste("update.lse", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old + logppratio;
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accupdateoneL <- 1;
   }
   d0 <- sum(theta$L==0);
@@ -90,14 +96,19 @@ updateoneL.se <- function(y,
   newtheta$L <- theta$L * movesca;
   newsca <- max(newtheta$L);
   oldsca <- max(theta$L);
-  
-  logacc <- llike(y, X, newtheta, classification) -
-    llike(y, X, theta, classification) +
+  llik.new <- llike(y, X, newtheta, classification);
+  llik.old <- theta$llik.old;
+#  llik.old <-  llike(y, X, theta, classification);
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.lse", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old +
     dgamma(newsca, la, d*lb, log=T) -
     dgamma(oldsca, la, d*lb, log=T) -
     log(oldsca) + log(newsca);
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accupdateL <- 1;
   }
   return(list(theta=theta, accupdateL=accupdateL));

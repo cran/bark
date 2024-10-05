@@ -1,9 +1,9 @@
 Package: bark
 Type: Package
 Title: Bayesian Additive Regression Kernels
-Version: 1.0.4
-Date: 2023-04-17
-Authors@R: c(person("Merlise", "Clyde", email="clyde@stat.duke.edu",
+Version: 1.0.5
+Date: 2024-10-05
+Authors@R: c(person("Merlise", "Clyde", email="clyde@duke.edu",
 	   		            role=c("aut","cre", "ths"),
 	   		            comment=c("ORCID=0000-0002-3595-1872")
 	   		       ),
@@ -28,17 +28,20 @@ Description: Bayesian Additive Regression Kernels (BARK) provides
 License: GPL (>= 3)
 URL: https://www.R-project.org, https://github.com/merliseclyde/bark
 BugReports: https://github.com/merliseclyde/bark/issues
-Suggests: BART, e1071, rmarkdown, knitr, roxygen2, testthat, covr
+Depends: R (>= 3.5.0)
+Suggests: BART, e1071, fdm2id, rmarkdown, knitr, roxygen2, testthat,
+        covr
+LazyData: yes
 Repository: CRAN
 NeedsCompilation: yes
 ByteCompile: yes
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Language: en-US
 VignetteBuilder: knitr
-Packaged: 2023-04-17 23:44:53 UTC; clyde
+Packaged: 2024-10-05 21:16:20 UTC; clyde
 Author: Merlise Clyde [aut, cre, ths] (ORCID=0000-0002-3595-1872),
   Zhi Ouyang [aut],
   Robert Wolpert [ctb, ths]
-Maintainer: Merlise Clyde <clyde@stat.duke.edu>
-Date/Publication: 2023-04-18 19:10:06 UTC
+Maintainer: Merlise Clyde <clyde@duke.edu>
+Date/Publication: 2024-10-05 22:40:28 UTC

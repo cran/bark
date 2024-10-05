@@ -43,14 +43,19 @@ updateci <- function(y,          # response varaible continuous/[0/1] depend on 
   }
   dpsfromnew <- newtheta$nvec*(newtheta$varphi^tune$dpow);
   dpsfromnew <- dpsfromnew/sum(dpsfromnew);
-
-  logacc <- llike(y, X, newtheta, classification, fullXX) -
-    llike(y, X, theta, classification, fullXX) +
+  llik.old <- theta$llik.old;
+#  llik.old = llike(y, X, theta, classification, fullXX)
+  llik.new = llike(y, X, newtheta, classification, fullXX)
+#  if (llik.old != theta$llik.old) {
+#    print(paste("update.ci", llik.old, theta$llik.old));
+#  }
+  logacc <- llik.new - llik.old +
     log(nvec[delind]/(nvec[newind]+1)) +
     log(dpsfromnew[newind]/dpsfromold[delind]);
 
   if(exptoss > - logacc){
     theta <- newtheta;
+    theta$llik.old <- llik.new;
     accupdateci <- 1;
   }
   return(list(theta=theta, accupdateci=accupdateci));

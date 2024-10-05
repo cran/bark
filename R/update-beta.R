@@ -26,7 +26,7 @@ updatebeta <- function(y,          # response varaible continuous/[0/1] depend o
     XX <- matrix(fullXX[, theta$nvec>0], ncol=sum(theta$nvec>0));
   }
   varphiovern <- theta$varphi[theta$nvec>0]/theta$nvec[theta$nvec>0]^2;
-  evv <- eigen(t(XX)%*%XX, symmetric=TRUE, EISPACK=TRUE);
+  evv <- eigen(t(XX)%*%XX, symmetric=TRUE);
   ivals <- 1/(theta$phi*evv$values + varphiovern);
   if(dim(XX)[2] == 1){
     Sigma <- 1/(theta$phi*t(XX)%*%XX + varphiovern);

@@ -199,8 +199,8 @@ Duke University. PhD dissertation, page 58.
 }
 \seealso{
 Other bark functions: 
-\code{\link{bark-package-deprecated}},
 \code{\link{bark-package}},
+\code{\link{bark-package-deprecated}},
 \code{\link{sim_Friedman1}()},
 \code{\link{sim_Friedman2}()},
 \code{\link{sim_Friedman3}()},

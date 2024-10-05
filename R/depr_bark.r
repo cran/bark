@@ -267,6 +267,10 @@ bark_mat <- function(x.train,
     }
   }
 
+  if (is.null(theta$llik.old)) {
+    theta$llik.old <- llike(y.train, x.train, theta, classification)
+  }
+  
   # burning the markov chain
   fullXX <- NULL;
   for(i in 1:(keepevery*nburn)){
