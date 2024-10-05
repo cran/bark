@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/bark)](https://CRAN.R-project.org/package=bark)
+status](https://www.r-pkg.org/badges/version/bark)](https://cran.r-project.org/package=bark/)
 [![R-CMD-check](https://github.com/merliseclyde/bark/workflows/R-CMD-check/badge.svg)](https://github.com/merliseclyde/bark/actions)
 [![codecov](https://codecov.io/gh/merliseclyde/bark/graph/badge.svg?token=iPCcWEu34R)](https://app.codecov.io/gh/merliseclyde/bark)
 [![OpenSSF Best

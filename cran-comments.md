@@ -5,15 +5,14 @@
 Possible misspelled words in the DESCRIPTION are correct surnames
 
 ## Test environments
-- local R installation macosx, R 4.4.1
-- ubuntu  (r-release, r-devel, and old-release) CI github actions
+- local R installation macosx, M1mac R 4.4.1 
+- ubuntu  (r-release, r-devel) CI github actions
 - win-builder (r-release, r-devel)
-- mac-builder-M1mac (r-release, r-devel)
 - R-hub windows-x86_64-devel (r-devel)
 - R-hub ubuntu-gcc-release (r-release)
 - R-hub fedora-clang-devel (r-devel)
-- R-hub linux-x86_64-rocker-gcc-san (r-devel)
-- docker debian, gcc-12, intel-MKL-latest
+
+
 
 
 ## R CMD check results
