@@ -11,6 +11,7 @@
 Practices](https://bestpractices.coreinfrastructure.org/projects/7096/badge)](https://bestpractices.coreinfrastructure.org/projects/7096)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/bark)](https://CRAN.R-project.org/package=bark)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13894258.svg)](https://doi.org/10.5281/zenodo.13894258)
 <!-- badges: end -->
 
 The bark package implements estimation for a Bayesian nonparametric
