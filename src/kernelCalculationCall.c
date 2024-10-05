@@ -22,8 +22,8 @@
                  SEXP RL,  	// d*1, kernel vector
                  SEXP Risi) // p*1, indicator of intercept
   {
-    int   *xdims = INTEGER(getAttrib(RX,R_DimSymbol));
-    int   *cdims = INTEGER(getAttrib(RC,R_DimSymbol));
+    int   *xdims = INTEGER(Rf_getAttrib(RX,R_DimSymbol));
+    int   *cdims = INTEGER(Rf_getAttrib(RC,R_DimSymbol));
     int   n = xdims[0]; // n, number of observations
     int   d = xdims[1];	// d, observation dimension
     int   p = cdims[0];
@@ -46,7 +46,7 @@
     c = REAL(RC);
     l = REAL(RL);
 
-    SEXP RZ = PROTECT(allocMatrix(REALSXP, n, p));
+    SEXP RZ = PROTECT(Rf_allocMatrix(REALSXP, n, p));
     z = REAL(RZ);
 
     //Calculate the exponent multiplied by the constant
