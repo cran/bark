@@ -55,7 +55,7 @@ fit.bark.d <- bark(y ~ .,
                    printevery = 10^10)
 
 mean((fit.bark.d$yhat.test.mean-testdata$y)^2)
-#> [1] 1738.992
+#> [1] 1920.283
 ```
 
 bark is similar to SVM, however it allows different kernel smoothing
@@ -83,7 +83,7 @@ Over the next year the following enhancements are planned:
 
 - add S3 methods for `predict`, `summary`, `plot`
 
-- add additional kernels
+- add additional kernels and LARK methods from AOS (2011) paper
 
 - better hyperparameter specification
 
