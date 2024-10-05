@@ -5,12 +5,12 @@
 
 <!-- badges: start -->
 
-[![](https://www.r-pkg.org/badges/version/bark)](https://cran.r-project.org/package=bark/)
 [![R-CMD-check](https://github.com/merliseclyde/bark/workflows/R-CMD-check/badge.svg)](https://github.com/merliseclyde/bark/actions)
 [![codecov](https://codecov.io/gh/merliseclyde/bark/graph/badge.svg?token=iPCcWEu34R)](https://app.codecov.io/gh/merliseclyde/bark)
 [![OpenSSF Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/7096/badge)](https://bestpractices.coreinfrastructure.org/projects/7096)
-
+[![CRAN
+status](https://www.r-pkg.org/badges/version/bark)](https://CRAN.R-project.org/package=bark)
 <!-- badges: end -->
 
 The bark package implements estimation for a Bayesian nonparametric
