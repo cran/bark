@@ -3,6 +3,8 @@
 * fixed issues identified on CRAN package check regarding noRemap (issue #9)
 so that package passes CRAN checks on R-devel
 
+* updated my email address in DESCRIPTION from `clyde@stat.duke.edu` 
+to `clyde@duke.edu` as the server for the former will be retired
 
 ## Test environments
 - local R installation macosx, M1mac R 4.4.1 
