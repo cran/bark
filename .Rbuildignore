@@ -21,4 +21,5 @@ run-checks.R
 ^CRAN-SUBMISSION$
 bark-profiling.R
 tests/testthat/test_new_vs_old_code.R
+.zenodo.json
 
