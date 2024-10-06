@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Clyde"
+  given-names: "Merlise"
+  orcid: "https://orcid.org/0000-0002-3595-1872"
+- family-names: "Ouyang"
+  given-names: "Zhi"  
+title: "bark"
+version: 1.0.5
+doi: 10.5281/zenodo.13894258
+date-released: 2024-10-05
+url: "https://CRAN.R-project.org/package=bark"
